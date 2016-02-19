@@ -1,0 +1,50 @@
+  
+  
+                                      [1X[5X3K2[105X[101X
+  
+  
+                            [1XCayley cages algorithms[101X
+  
+  
+                                  Version 1.0
+  
+  
+                                16 February 2016
+  
+  
+                            Rafael Villarroel-Flores
+  
+                             Citlalli Zamora-Mejía
+  
+  
+  
+  Rafael Villarroel-Flores
+      Email:    [7Xmailto:rvf0068@gmail.com[107X
+      Homepage: [7Xhttp://rvf0068.github.io[107X
+  Citlalli Zamora-Mejía
+      Email:    [7Xmailto:cizame@gmail.com[107X
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© 2016 by Rafael Villarroel-Flores and Citlalli Zamora-Mejía[133X
+  
+  [33X[0;0Y[5X3K2[105X package is free software; you can redistribute it and/or modify it under
+  the      terms      of      the      GNU      General     Public     License
+  ([7Xhttp://www.fsf.org/licenses/gpl.html[107X)  as  published  by  the Free Software
+  Foundation;  either  version 2 of the License, or (at your option) any later
+  version.[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (3K2)[101X
+  
+  1 [33X[0;0YGraphics_3K2_localy[133X
+    1.1 [33X[0;0YIsCayleyGraph[133X
+      1.1-1 CheckKnapsackInput
+      1.1-2 IsCayleyCage
+      1.1-3 CCEliminaInversos
+  
+  
+  [32X

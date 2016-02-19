@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Reading PKGVERSIONDATA chunk from the PackageInfo.g file -->
+
+<!DOCTYPE Book SYSTEM "gapdoc.dtd"
+   [ <!ENTITY 3K2 "<Package>3K2</Package>">
+     <#Include Label="PKGVERSIONDATA">
+   ]>
+
+<!-- Documentation of the kreher-stinson package. -->
+
+<Book Name="3K2"> 
+
+  <TitlePage>
+    <Title>&3K2;</Title>
+    <Subtitle>Cayley cages algorithms</Subtitle>
+    <Version>Version &VERSION;</Version>
+    <Date>&RELEASEDATE;</Date>
+    <Author> Rafael Villarroel-Flores
+      <Email>rvf0068@gmail.com</Email>
+      <Homepage>http://rvf0068.github.io</Homepage>
+    </Author>
+    <Author>Citlalli Zamora-Mejía
+      <Email>cizame@gmail.com</Email>
+    </Author>
+
+    <Copyright> 
+      &copyright; 2016 by Rafael Villarroel-Flores and Citlalli Zamora-Mejía<P/>
+      &3K2; package is free software; 
+      you can redistribute it and/or modify it under the terms of the 
+      <URL Text="GNU General Public License">http://www.fsf.org/licenses/gpl.html</URL> 
+      as published by the Free Software Foundation; either version 2 of the License, 
+      or (at your option) any later version.
+    </Copyright>
+  </TitlePage>
+
+  <TableOfContents/>
+
+  <Body>
+
+    <#Include SYSTEM "cayley-cages.xml">
+    
+  </Body>
+
+  <TheIndex/>
+
+</Book>
+
+<!-- ==================================================================== -->
+

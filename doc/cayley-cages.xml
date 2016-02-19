@@ -1,0 +1,14 @@
+<Chapter Label="Graphics 3K2 locally">
+
+  <Heading>Graphics_3K2_localy</Heading>
+
+  <Section Label="IsCayleyGraph">
+
+    <Heading>IsCayleyGraph</Heading>
+
+    <#Include Label="CheckKnapsackInput">
+    <#Include Label="IsCayleyCage">
+    <#Include Label="CCEliminaInversos">
+
+  </Section>
+</Chapter>
