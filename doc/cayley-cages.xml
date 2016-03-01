@@ -1,13 +1,11 @@
-<Chapter Label="Graphics 3K2 locally">
+<Chapter Label="Gráficas localmente 3K2">
 
-  <Heading>Graphics_3K2_localy</Heading>
+  <Heading>Gráficas localmente 3K2</Heading>
 
-  <Section Label="IsCayleyGraph">
+  <Section Label="Gráficas de Cayley localmente 3K2">
 
-    <Heading>IsCayleyGraph</Heading>
-
-    <#Include Label="CheckKnapsackInput">
-    <#Include Label="IsCayleyCage">
+    <Heading>Gráficas de Cayley localmente 3K2</Heading>
+    
     <#Include Label="CCEliminaInversos">
 
   </Section>
