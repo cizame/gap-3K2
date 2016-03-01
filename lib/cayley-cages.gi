@@ -22,3 +22,42 @@ InstallGlobalFunction( CCEliminaInversos, function( l )
     return l1;
 end);
 
+#F  CCConjuntoT1( a,b,c ) 
+##
+InstallGlobalFunction( CCConjuntoT1, function( a,b,c )
+        local l;
+    l := [a,a^-1,b,b^-1,c,c^-1];
+
+    if Length(Set(l)) <> 6 then
+        return fail;
+    elif
+        Order(a)<>1 or Order(b) or Order(c) then
+        return fail;        
+    elif
+      a*b = c^-1 then
+        return fail;
+    elif
+      a*b = c then
+        return fail;
+    elif
+      a*b^-1 = c then
+        return fail;
+    elif
+      a*b^-1 = c^-1 then
+        return fail;
+    elif
+      a*c = b then
+        return fail;
+    elif
+      a*c = b^-1 then
+        return fail;
+    elif
+      a*c^-1 = b then
+        return fail;
+    elif
+      a*c^-1 = b^-1 then
+        return fail;
+    else
+        return l;
+    fi;
+end);

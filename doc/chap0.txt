@@ -43,6 +43,7 @@
   1 [33X[0;0YGráficas localmente 3K2[133X
     1.1 [33X[0;0YGráficas de Cayley localmente 3K2[133X
       1.1-1 CCEliminaInversos
+      1.1-2 CCConjuntoT1
   
   
   [32X

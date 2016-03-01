@@ -9,5 +9,15 @@
   [29X[2XCCEliminaInversos[102X( [3Xlista[103X ) [32X function
   
   [33X[0;0YLa  función  requiere  una lista de elementos de un grupo y regresa la lista
-  sin invrsos.[133X
+  sin inversos.[133X
+  
+  [1X1.1-2 CCConjuntoT1[101X
+  
+  [29X[2XCCConjuntoT1[102X( [3Xelemento[103X, [3Xelemento[103X, [3Xelemento[103X ) [32X function
+  
+  [33X[0;0YRequiere  tres  elementos  de  un  mismo  grupo [22Xa[122X, [22Xb[122X y [22Xc[122X. Verifica que estos
+  elementos  cumplan  con  las condiciones necesarias para cear una gráfica de
+  Cayley  localmente  [22X3K_2[122X  del  tipo  uno. En caso de cumplir las condiciones
+  regresa  la  lista de seis elementos [22X[a,a^-1,b,b^-1,c,c^-1][122X, de lo contrario
+  regresa fail.[133X
   
