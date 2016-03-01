@@ -2,4 +2,6 @@
 \contentsline {section}{\numberline {1.1}\leavevmode {\color {Chapter }Gr{\'a}ficas de Cayley localmente 3K2}}{4}{section.1.1}
 \contentsline {subsection}{\numberline {1.1.1}\leavevmode {\color {Chapter }CCEliminaInversos}}{4}{subsection.1.1.1}
 \contentsline {subsection}{\numberline {1.1.2}\leavevmode {\color {Chapter }CCConjuntoT1}}{4}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}\leavevmode {\color {Chapter }CCConjuntoT2}}{4}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}\leavevmode {\color {Chapter }CCCantidadDeGrupos}}{4}{subsection.1.1.4}
 \contentsline {chapter}{Index}{5}{section*.3}

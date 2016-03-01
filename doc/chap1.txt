@@ -16,8 +16,26 @@
   [29X[2XCCConjuntoT1[102X( [3Xelemento[103X, [3Xelemento[103X, [3Xelemento[103X ) [32X function
   
   [33X[0;0YRequiere  tres  elementos  de  un  mismo  grupo [22Xa[122X, [22Xb[122X y [22Xc[122X. Verifica que estos
-  elementos  cumplan  con  las condiciones necesarias para cear una gráfica de
+  elementos  cumplan  con las condiciones necesarias para crear una gráfica de
   Cayley  localmente  [22X3K_2[122X  del  tipo  uno. En caso de cumplir las condiciones
   regresa  la  lista de seis elementos [22X[a,a^-1,b,b^-1,c,c^-1][122X, de lo contrario
   regresa fail.[133X
+  
+  [1X1.1-3 CCConjuntoT2[101X
+  
+  [29X[2XCCConjuntoT2[102X( [3Xelemento[103X, [3Xelemento[103X ) [32X function
+  
+  [33X[0;0YRequiere dos elementos de un mismo grupo [22Xa[122X y [22Xb[122X. Verifica que estos elementos
+  cumplan  con  las  condiciones  necesarias  para crear una gráfica de Cayley
+  localmente  [22X3K_2[122X del tipo dos. En caso de cumplir las condiciones regresa la
+  lista de seis elementos [22X[a,a^-1,b,b^-1,a^-1b,b^-1a][122X, de lo contrario regresa
+  fail.[133X
+  
+  [1X1.1-4 CCCantidadDeGrupos[101X
+  
+  [29X[2XCCCantidadDeGrupos[102X( [3Xnúmero[103X, [3Xnúmero[103X ) [32X function
+  
+  [33X[0;0YRecibe dos números naturales, los que se interpretan como un intervalo en el
+  cual  se  desea  saber  la cantidad de grupos de orden [22Xi[122X con [22Xi ∈ [a,b][122X, para
+  cada [22Xi[122X.[133X
   

@@ -1,31 +1,17 @@
-
 KSQueens:=function( n )
-    local C, XX, queens,k;
+    local C, X, queens,k;
     C := [];
-    XX := [];
-    k:=0;
-    queens := function(l)
-        local x,valid;
-        valid := function()
-            local i, j, Bad;
-            Bad := [];
-            for i in [1..l] do
-                Append(Bad,[XX[i],XX[i]-l-1+i,XX[i]+l+1-i]);
-            od;
-            return Difference( [1..n], Bad );
-        end;
-        if l = n then
-            Print(XX,"\n");    
-        fi;
-        C[l+1] := valid();
-        for x in C[l+1] do
-            XX[l+1] := x;
-            XX := XX{[1..l+1]};
-            k := k+1;
-            queens(l+1);
-        od;
-    end;
-    queens(0);
-    return;
+    X:=1;
+    return X;
+end;
+
+CCCantidadDeGrupos1:= function(a,b)
+    local i,G;
+    i:=1;
+    for i in [a..b] do
+        PrintTo("/dev/tty","Cardinalidad del grupo = ",i,"   \n");
+        G:=AllGroups(i);
+        PrintTo("/dev/tty","Cantidad de grupos = ",Length(G),"   \n");
+    od;
 end;
 

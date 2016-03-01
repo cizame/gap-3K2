@@ -8,6 +8,8 @@
     
     <#Include Label="CCEliminaInversos">
     <#Include Label="CCConjuntoT1">    
+    <#Include Label="CCConjuntoT2">    
+    <#Include Label="CCCantidadDeGrupos">    
 
   </Section>
 </Chapter>

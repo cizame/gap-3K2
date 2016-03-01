@@ -61,3 +61,58 @@ InstallGlobalFunction( CCConjuntoT1, function( a,b,c )
         return l;
     fi;
 end);
+
+#F  CCConjuntoT2( a,b ) 
+##
+InstallGlobalFunction( CCConjuntoT2, function( a,b )
+        local l;
+    if Order(a)<>3 and Order(b)<>3 and Order(a^-1*b)<>3 then 
+
+        l :=Set([a,a^-1,b,b^-1,a^-1*b,b^-1*a]);
+        if Length(l) <> 6 then
+            return fail;
+        elif
+          Order(a^-1*b) = 3 then
+            return fail;
+        elif
+          b = a^3 then
+            return fail;
+        elif
+          b^-1 = a^2 then
+            return fail;
+        elif
+          b^2 = a^-1 then
+            return fail;
+        elif
+          a*b = b^-1*a then
+            return fail;
+        elif
+          a^2 = b^2 then
+            return fail;
+        elif
+          a*b = b*a then
+            return fail;
+        elif
+          a^-1*b = a*b^-1*a then
+            return fail;
+        elif
+          a*b = b*a^-1 then
+            return fail;
+        else
+            return l;
+        fi;
+    else
+        return fail;
+    fi;
+end);
+
+#F  CCCantidadDeGrupos( a,b ) 
+##
+InstallGlobalFunction( CCCantidadDeGrupos, function( a,b )
+    local i,j,G;
+    for i in [a..b] do
+        PrintTo("/dev/tty","cardinalidad del grupo = ",i,"   \n");
+        G:=AllGroups(i);
+        PrintTo("/dev/tty","cantidad de grupos = ",Length(G),"   \n");
+    od; 
+end);
