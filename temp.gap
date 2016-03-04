@@ -1,122 +1,65 @@
-CCPosibleCuello := function ( T )
-    local XX, T1, k, Multipli;
-    XX := ShallowCopy( T );
-    T1 := [T[1]*T[1]^-1];
-    Multipli := function (l)
-        local i, j, TT, aux;
-        TT := [];
-        for j in [1..Length(XX)] do
-            for i in [1..6] do
-                Add(TT,XX[j]*T[i]);
-            od;
-        od;
-        aux := Union(XX,T1);
-        T1 := ShallowCopy(XX);
-        SubtractSet(Set(TT),Set(aux));
-        XX := Set(TT);
-        Print("medida tt= ",Length(XX));
-        
-        if Length(XX) = 6*4^(l+1) then
-            Multipli(l+1);
-        else
-            k := l;
-        fi;
-    end;
-    if Length(XX) <> 6 then
-        return fail;
+LoadPackage("grape");
+
+EsGraficaDeCayley := function (g)
+    local aut,cc,reps,l,esono,i;
+    aut := AutGroupGraph(g);
+    if IsTransitive(aut,Vertices(g)) and Order(aut)=OrderGraph(g) then
+        return true;
     else
-        Multipli(1);
-        Print("El cuello de la gráfica generada por",T," es ", 2*k ," o ", 2*k+1," .\n");
+        esono := false;
+        cc := ConjugacyClassesSubgroups(aut);
+        reps := List(cc,x->x[1]);
+        l := List([1..Length(reps)],x->[x,Order(reps[x])]);
+        l := Filtered(l,x->x[2]=OrderGraph(g));
     fi;
+     for i in [1..Length(l)] do
+        if  IsTransitive(reps[l[i][1]],Vertices(g))=true then
+            return true;
+        fi; 
+    od;
+    return false;
 end;
 
 
-CCPosiblesT := function ( l,a )    
-    local i, j, k, m, L;
-    L := [];
-    if a=3 then
-        m := Length(l)-2;
+
+ListaTBuenas := function ( g, a )
+    local aut, l, l1, l2, i, orb, t;
+    aut := AutomorphismGroup(g);
+    l2 := [];
+    if a=1 then
+        l := Filtered(Elements(g), x-> Order(x)=3);
     else
-        m := Length(l)-1;
+        l := Filtered(Elements(g), x-> not Order(x)=3);
     fi;
-    for i in [1..m] do
-        for j in [i+1..m+1] do
-            if a=3 then
-                for k in [j+1..m+2] do
-                    Add(L,[l[i],l[j],l[k]]);
-                od;
-            else
-                Add(L,[l[i],l[j]]);
+        Print(l,"\n");
+
+    l1 := ShallowCopy(CCEliminaInversos(l));
+    l := Set(CCPosiblesT(l1,a));
+    orb := Orbits(aut,Set(l),OnSets);
+    l := List(orb,x->x[1]);
+    orb := [];
+        Print(Length(l),"\n");
+
+    if a=1 then
+        for i in [1..Length(l)] do
+                Print(l[i],"\n");
+
+            t := CCConjuntoT1(l[i][1],l[i][2],l[i][3]);
+             Print("t=",t,"\n");
+            if t<>fail then
+                Add(l2,t);
             fi;
         od;
-    od;
-    return L;
+    else
+        for i in [1..Length(l)] do
+            t := CCConjuntoT2(l[i][1],l[i][2]);
+            Print("t=",t,"\n");
+            
+            if t<>fail then
+                Add(l2,t);
+                Print(l2,"\n");
+            fi;
+        od;
+    fi;
+    return l2;
 end;
-
-
-
-# ExaminaGrupoCondicionUno := function (g,grupo,CUELLO)  # Recibe un grupo
-#     local i,c,c1,l,l1,t,t1,tbuena,seis,aut,orbs,reps,reps1,OrdendeG,GrupoGenerado,Orden,g1,sinc,AUX,numdegraf,Cay;
-#     aut := AutomorphismGroup(g);
-#       numdegraf:=[];
-#     g1:=Filtered(Elements(g), x-> not x in Centre(g) and Order(x)=3);
-#     l1:=EliminaInversos(g1);
-#     l:=[];
-#     g1:=[];
-#     if Length(l1)>2 then
-#     c1:=CombinacionesDe3(l1,g);
-#     l1:=[];
-#     if Length(c1)>0 then
-#         OrdendeG:=Order(g);
-#         c:=[];
-#         orbs := Orbits(aut,c1,OnSets);
-#         c1 := List(orbs,x->x[1]);
-#         for i in [1..Length(c1)] do 
-#             GrupoGenerado:=Group(c1[i]);    
-#             Orden:=Order(GrupoGenerado); 
-#             if Orden = OrdendeG then   
-#                 c:=Union(c,[c1[i]]);
-#             fi;
-#         od;
-#         c1:=[];
-#         if Length(c)>0 then
-#            tbuena :=[];
-#             orbs:=[];
-#             reps:=c;
-#             c:=[];
-#             for i in [1..Length(reps)] do
-#                 t := reps[i];
-#                 if Length(t)=3 then   
-#                     seis := ConjuntoTPrimero(t[1],t[2],t[3]);
-#                     if seis <> fail then
-#                         tbuena:=Union(tbuena,[seis]);
-#                     fi;
-#                 fi;
-#             od;
-#             reps:=[];
-#             tbuena := Set(tbuena,Set);
-#             orbs := Orbits(aut,tbuena,OnSets);
-#             reps := List(orbs,x->x[1]);
-#             Print("Hay  ", Length(reps[1]) ," trios buenos.\n");
-#             orbs:=[];
-#             Cay:= List(reps,x->CayleyGraph(g,x));
-#             AUX:=Filtered(Cay,x->Adyacencia(x,CUELLO/2)<>fail);
-#             Print("Despues de usar adyacencias hay ",Length(AUX)," graficas posibles para verificar el cuello\n");
-#             numdegraf:=ListadeGraficas(AUX,grupo,CUELLO);
-#             Cay:=[];
-#             if Length(numdegraf)>0 then
-#                 Print("Ahy ",Length(numdegraf)," graficas con el cuello que deseas \n");
-#                 Print("La mas chica tiene orden = ", OrderGraph(numdegraf[1]) ,"\n");
-#             fi;
-#             reps1:=[];
-#             AUX:=[];
-#             c:=[];
-#         fi;
-#      fi;
-#  fi;
-
-#     aut:=[];
-
-#     return numdegraf;
-
-# end;

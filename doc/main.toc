@@ -6,4 +6,6 @@
 \contentsline {subsection}{\numberline {1.1.4}\leavevmode {\color {Chapter }CCCantidadDeGrupos}}{4}{subsection.1.1.4}
 \contentsline {subsection}{\numberline {1.1.5}\leavevmode {\color {Chapter }CCPosibleCuello}}{5}{subsection.1.1.5}
 \contentsline {subsection}{\numberline {1.1.6}\leavevmode {\color {Chapter }CCPosiblesT}}{5}{subsection.1.1.6}
+\contentsline {subsection}{\numberline {1.1.7}\leavevmode {\color {Chapter }CCEsGraficaDeCayley}}{5}{subsection.1.1.7}
+\contentsline {subsection}{\numberline {1.1.8}\leavevmode {\color {Chapter }CCListaTBuenas}}{5}{subsection.1.1.8}
 \contentsline {chapter}{Index}{6}{section*.3}

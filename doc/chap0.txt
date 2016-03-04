@@ -48,6 +48,8 @@
       1.1-4 CCCantidadDeGrupos
       1.1-5 CCPosibleCuello
       1.1-6 CCPosiblesT
+      1.1-7 CCEsGraficaDeCayley
+      1.1-8 CCListaTBuenas
   
   
   [32X

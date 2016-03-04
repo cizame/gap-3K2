@@ -11,7 +11,10 @@
     <#Include Label="CCConjuntoT2">    
     <#Include Label="CCCantidadDeGrupos">    
     <#Include Label="CCPosibleCuello">    
-    <#Include Label="CCPosiblesT">    
+    <#Include Label="CCPosiblesT">
+    <#Include Label="CCEsGraficaDeCayley">
+    <#Include Label="CCListaTBuenas">
+    
 
   </Section>
 </Chapter>

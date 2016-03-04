@@ -94,8 +94,41 @@ DeclareGlobalFunction( "CCPosibleCuello" );
 ##  <Description>
 ##  Recibe dos argumentos, el primero es una lista de elementos de un grupo,
 ##  el segundo es el número uno o dos, según la candición para crear gráficas
-##  de Cayley localmente <M>3K_{2}</M> que se quiera verificar.
+##  de Cayley localmente <M>3K_{2}</M> que se quiera verificar. La función regresa 
+##  una nueva lista donde cada entrada contiene dos o tres elementos, según sea el caso, de la lista original. 
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CCPosiblesT" );
+
+#F  CCEsGraficaDeCayley( G ) 
+##
+##  <#GAPDoc Label="CCEsGraficaDeCayley">
+##  <ManSection>
+##  <Func Name="CCEsGraficaDeCayley" Arg="gráfica"/>
+##
+##  <Description>
+##  Recibe una gráfica <M>G</M> y verifica si <M>G</M> es de Cayley o no,
+##  en caso afirmativo regresa true o de lo contrario false.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CCEsGraficaDeCayley" );
+
+#F  CCListaTBuenas( g, a ) 
+##
+##  <#GAPDoc Label="CCListaTBuenas">
+##  <ManSection>
+##  <Func Name="CCListaTBuenas" Arg="grupo, número_1_o_2"/>
+##
+##  <Description>
+##  Recibe dos parametros el primero es un grupo y el segundo es
+##  el número uno o dos, según sea el caso de las condiciones para
+##  construir gráficas de Cayley localmente <M>3K_2</M>. La función
+##  regresa una lista, cuyos elementos son conjuntos de seis elementos del 
+##  grupo dado, los cuales construyen gráficas de Cayley localmente
+##  <M>3K_2</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CCListaTBuenas" );

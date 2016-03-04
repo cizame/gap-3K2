@@ -30,6 +30,8 @@ InstallGlobalFunction( CCConjuntoT1, function( a,b,c )
 
     if Length(Set(l)) <> 6 then
         return fail;
+        Print(l,"\n");
+        
     elif
         Order(a)<>1 or Order(b) or Order(c) then
         return fail;        
@@ -164,7 +166,7 @@ InstallGlobalFunction( CCPosiblesT, function( l, a )
     fi;
     for i in [1..m] do
         for j in [i+1..m+1] do
-            if a=3 then
+            if a=1 then
                 for k in [j+1..m+2] do
                     Add(L,[l[i],l[j],l[k]]);
                 od;
@@ -174,4 +176,70 @@ InstallGlobalFunction( CCPosiblesT, function( l, a )
         od;
     od;
     return L;    
+end);
+
+#F  CCEsGraficaDeCayley( G ) 
+##
+InstallGlobalFunction( CCEsGraficaDeCayley, function( G )
+    local aut,cc,reps,l,esono,i;
+    aut := AutGroupGraph(g);
+    if IsTransitive(aut,Vertices(g)) and Order(aut)=OrderGraph(g) then
+        return true;
+    else
+        esono := false;
+        cc := ConjugacyClassesSubgroups(aut);
+        reps := List(cc,x->x[1]);
+        l := List([1..Length(reps)],x->[x,Order(reps[x])]);
+        l := Filtered(l,x->x[2]=OrderGraph(g));
+    fi;
+     for i in [1..Length(l)] do
+        if  IsTransitive(reps[l[i][1]],Vertices(g))=true then
+            return true;
+        fi; 
+    od;
+    return false;
+end);
+
+#F  CCListaTBuenas( g, a ) 
+##
+InstallGlobalFunction( CCListaTBuenas, function( g, a )
+    local aut, l, l1, l2, i, orb, t;
+    aut := AutomorphismGroup(g);
+    l2 := [];
+    if a=1 then
+        l := Filtered(Elements(g), x-> Order(x)=3);
+    else
+        l := Filtered(Elements(g), x-> not Order(x)=3);
+    fi;
+        Print(l,"\n");
+
+    l1 := ShallowCopy(CCEliminaInversos(l));
+    l := Set(CCPosiblesT(l1,a));
+    orb := Orbits(aut,Set(l),OnSets);
+    l := List(orb,x->x[1]);
+    orb := [];
+        Print(Length(l),"\n");
+
+    if a=1 then
+        for i in [1..Length(l)] do
+                Print(l[i],"\n");
+
+            t := CCConjuntoT1(l[i][1],l[i][2],l[i][3]);
+             Print("t=",t,"\n");
+            if t<>fail then
+                Add(l2,t);
+            fi;
+        od;
+    else
+        for i in [1..Length(l)] do
+            t := CCConjuntoT2(l[i][1],l[i][2]);
+            Print("t=",t,"\n");
+            
+            if t<>fail then
+                Add(l2,t);
+                Print(l2,"\n");
+            fi;
+        od;
+    fi;
+    return l2;
 end);

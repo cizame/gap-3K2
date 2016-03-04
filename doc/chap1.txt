@@ -54,5 +54,24 @@
   
   [33X[0;0YRecibe  dos argumentos, el primero es una lista de elementos de un grupo, el
   segundo  es  el  número uno o dos, según la candición para crear gráficas de
-  Cayley localmente [22X3K_2[122X que se quiera verificar.[133X
+  Cayley localmente [22X3K_2[122X que se quiera verificar. La función regresa una nueva
+  lista  donde  cada entrada contiene dos o tres elementos, según sea el caso,
+  de la lista original.[133X
+  
+  [1X1.1-7 CCEsGraficaDeCayley[101X
+  
+  [29X[2XCCEsGraficaDeCayley[102X( [3Xgráfica[103X ) [32X function
+  
+  [33X[0;0YRecibe  una  gráfica [22XG[122X y verifica si [22XG[122X es de Cayley o no, en caso afirmativo
+  regresa true o de lo contrario false.[133X
+  
+  [1X1.1-8 CCListaTBuenas[101X
+  
+  [29X[2XCCListaTBuenas[102X( [3Xgrupo[103X, [3Xnúmero_1_o_2[103X ) [32X function
+  
+  [33X[0;0YRecibe dos parametros el primero es un grupo y el segundo es el número uno o
+  dos,  según sea el caso de las condiciones para construir gráficas de Cayley
+  localmente [22X3K_2[122X. La función regresa una lista, cuyos elementos son conjuntos
+  de  seis  elementos del grupo dado, los cuales construyen gráficas de Cayley
+  localmente [22X3K_2[122X.[133X
   

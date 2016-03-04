@@ -30,6 +30,8 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X8534B069792D4040">1.1-4 CCCantidadDeGrupos</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7F27D73C7A1B3AC0">1.1-5 CCPosibleCuello</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7CA39B2D85FE2920">1.1-6 CCPosiblesT</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X829E31E1812E7804">1.1-7 CCEsGraficaDeCayley</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7EFAA0237E0004DC">1.1-8 CCListaTBuenas</a></span>
 </div></div>
 </div>
 
@@ -79,7 +81,21 @@
 <h5>1.1-6 CCPosiblesT</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CCPosiblesT</code>( <var class="Arg">lista</var>, <var class="Arg">número_1_o_2</var> )</td><td class="tdright">( function )</td></tr></table></div>
-<p>Recibe dos argumentos, el primero es una lista de elementos de un grupo, el segundo es el número uno o dos, según la candición para crear gráficas de Cayley localmente <span class="SimpleMath">3K_2</span> que se quiera verificar.</p>
+<p>Recibe dos argumentos, el primero es una lista de elementos de un grupo, el segundo es el número uno o dos, según la candición para crear gráficas de Cayley localmente <span class="SimpleMath">3K_2</span> que se quiera verificar. La función regresa una nueva lista donde cada entrada contiene dos o tres elementos, según sea el caso, de la lista original.</p>
+
+<p><a id="X829E31E1812E7804" name="X829E31E1812E7804"></a></p>
+
+<h5>1.1-7 CCEsGraficaDeCayley</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CCEsGraficaDeCayley</code>( <var class="Arg">gráfica</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Recibe una gráfica <span class="SimpleMath">G</span> y verifica si <span class="SimpleMath">G</span> es de Cayley o no, en caso afirmativo regresa true o de lo contrario false.</p>
+
+<p><a id="X7EFAA0237E0004DC" name="X7EFAA0237E0004DC"></a></p>
+
+<h5>1.1-8 CCListaTBuenas</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CCListaTBuenas</code>( <var class="Arg">grupo</var>, <var class="Arg">número_1_o_2</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Recibe dos parametros el primero es un grupo y el segundo es el número uno o dos, según sea el caso de las condiciones para construir gráficas de Cayley localmente <span class="SimpleMath">3K_2</span>. La función regresa una lista, cuyos elementos son conjuntos de seis elementos del grupo dado, los cuales construyen gráficas de Cayley localmente <span class="SimpleMath">3K_2</span>.</p>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapInd.html">[Next Chapter]</a>&nbsp;  </div>

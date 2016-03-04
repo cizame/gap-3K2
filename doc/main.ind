@@ -4,6 +4,8 @@
   \item \texttt  {CCConjuntoT1}, \hyperpage{4}
   \item \texttt  {CCConjuntoT2}, \hyperpage{4}
   \item \texttt  {CCEliminaInversos}, \hyperpage{4}
+  \item \texttt  {CCEsGraficaDeCayley}, \hyperpage{5}
+  \item \texttt  {CCListaTBuenas}, \hyperpage{5}
   \item \texttt  {CCPosibleCuello}, \hyperpage{5}
   \item \texttt  {CCPosiblesT}, \hyperpage{5}
 

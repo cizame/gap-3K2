@@ -6,6 +6,8 @@
   [2XCCConjuntoT1[102X  1.1-2
   [2XCCConjuntoT2[102X  1.1-3
   [2XCCEliminaInversos[102X  1.1-1
+  [2XCCEsGraficaDeCayley[102X  1.1-7
+  [2XCCListaTBuenas[102X  1.1-8
   [2XCCPosibleCuello[102X  1.1-5
   [2XCCPosiblesT[102X  1.1-6
   
