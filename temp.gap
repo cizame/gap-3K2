@@ -30,8 +30,8 @@ CCPosibleCuello := function ( T )
     fi;
 end;
 
-#CCPosiblesT := function ( l , a )
-CCPosibleT := function ( l,a )    
+
+CCPosiblesT := function ( l,a )    
     local i, j, k, m, L;
     L := [];
     if a=3 then

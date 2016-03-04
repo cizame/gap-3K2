@@ -46,6 +46,8 @@
       1.1-2 CCConjuntoT1
       1.1-3 CCConjuntoT2
       1.1-4 CCCantidadDeGrupos
+      1.1-5 CCPosibleCuello
+      1.1-6 CCPosiblesT
   
   
   [32X

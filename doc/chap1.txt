@@ -39,3 +39,20 @@
   cual  se  desea  saber  la cantidad de grupos de orden [22Xi[122X con [22Xi ∈ [a,b][122X, para
   cada [22Xi[122X.[133X
   
+  [1X1.1-5 CCPosibleCuello[101X
+  
+  [29X[2XCCPosibleCuello[102X( [3Xlista[103X ) [32X function
+  
+  [33X[0;0YRecibe  una  lista  [22XT[122X  de  seis  elementos de un grupo; [22XT[122X es un conjunto que
+  genera  una  gráfica de Cayley localmente [22X3K_2[122X. La función revisa cuales son
+  los  dos  tamaños  posibles de "cuello de triángulos" de la gráfia de Cayley
+  generada por [22XT[122X y lo reporta.[133X
+  
+  [1X1.1-6 CCPosiblesT[101X
+  
+  [29X[2XCCPosiblesT[102X( [3Xlista[103X, [3Xnúmero_1_o_2[103X ) [32X function
+  
+  [33X[0;0YRecibe  dos argumentos, el primero es una lista de elementos de un grupo, el
+  segundo  es  el  número uno o dos, según la candición para crear gráficas de
+  Cayley localmente [22X3K_2[122X que se quiera verificar.[133X
+  

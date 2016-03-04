@@ -116,3 +116,62 @@ InstallGlobalFunction( CCCantidadDeGrupos, function( a,b )
         PrintTo("/dev/tty","cantidad de grupos = ",Length(G),"   \n");
     od; 
 end);
+
+#F  CCPosibleCuello( T ) 
+##
+InstallGlobalFunction( CCPosibleCuello, function( T )
+    local XX, T1, k, Multipli;
+    XX := ShallowCopy( T );
+    T1 := [T[1]*T[1]^-1];
+    Multipli := function (l)
+        local i, j, TT, aux;
+        TT := [];
+        for j in [1..Length(XX)] do
+            for i in [1..6] do
+                Add(TT,XX[j]*T[i]);
+            od;
+        od;
+        aux := Union(XX,T1);
+        T1 := ShallowCopy(XX);
+        SubtractSet(Set(TT),Set(aux));
+        XX := Set(TT);
+        Print("medida tt= ",Length(XX));
+        
+        if Length(XX) = 6*4^(l+1) then
+            Multipli(l+1);
+        else
+            k := l;
+        fi;
+    end;
+    if Length(XX) <> 6 then
+        return fail;
+    else
+        Multipli(1);
+        Print("El cuello de la gráfica generada por",T," es ", 2*k ," o ", 2*k+1," .\n");
+    fi;
+    return k;   
+end);
+
+#F  CCPosiblesT( l , a ) 
+##
+InstallGlobalFunction( CCPosiblesT, function( l, a )
+    local i, j, k, m, L;
+    L := [];
+    if a=1 then
+        m := Length(l)-2;
+    else
+        m := Length(l)-1;
+    fi;
+    for i in [1..m] do
+        for j in [i+1..m+1] do
+            if a=3 then
+                for k in [j+1..m+2] do
+                    Add(L,[l[i],l[j],l[k]]);
+                od;
+            else
+                Add(L,[l[i],l[j]]);
+            fi;
+        od;
+    od;
+    return L;    
+end);

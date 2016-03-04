@@ -10,6 +10,8 @@
     <#Include Label="CCConjuntoT1">    
     <#Include Label="CCConjuntoT2">    
     <#Include Label="CCCantidadDeGrupos">    
+    <#Include Label="CCPosibleCuello">    
+    <#Include Label="CCPosiblesT">    
 
   </Section>
 </Chapter>

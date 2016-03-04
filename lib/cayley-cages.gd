@@ -24,7 +24,7 @@ DeclareGlobalFunction( "CCEliminaInversos" );
 ##
 ##  <#GAPDoc Label="CCConjuntoT1">
 ##  <ManSection>
-##  <Func Name="CCConjuntoT1" Arg="elemento,elemento,elemento"/>
+##  <Func Name="CCConjuntoT1" Arg="elemento, elemento, elemento"/>
 ##
 ##  <Description>
 ##  Requiere tres elementos de un mismo grupo <M>a</M>, <M>b</M> y <M>c</M>.
@@ -58,7 +58,7 @@ DeclareGlobalFunction( "CCConjuntoT2" );
 ##
 ##  <#GAPDoc Label="CCCantidadDeGrupos">
 ##  <ManSection>
-##  <Func Name="CCCantidadDeGrupos" Arg="número,número"/>
+##  <Func Name="CCCantidadDeGrupos" Arg="número, número"/>
 ##
 ##  <Description>
 ##  Recibe dos números naturales, los que se interpretan como
@@ -68,3 +68,34 @@ DeclareGlobalFunction( "CCConjuntoT2" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CCCantidadDeGrupos" );
+
+#F  CCPosibleCuello( T ) 
+##
+##  <#GAPDoc Label="CCPosibleCuello">
+##  <ManSection>
+##  <Func Name="CCPosibleCuello" Arg="lista"/>
+##
+##  <Description>
+##  Recibe una lista <M>T</M> de seis elementos de un grupo;
+##  <M>T</M> es un conjunto que genera una gráfica de Cayley localmente <M>3K_2</M>.
+##  La función revisa cuales son los dos tamaños posibles de "cuello de triángulos" 
+##  de la gráfia de Cayley generada por <M>T</M> y lo reporta.   
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CCPosibleCuello" );
+
+#F  CCPosiblesT( l, a ) 
+##
+##  <#GAPDoc Label="CCPosiblesT">
+##  <ManSection>
+##  <Func Name="CCPosiblesT" Arg="lista, número_1_o_2"/>
+##
+##  <Description>
+##  Recibe dos argumentos, el primero es una lista de elementos de un grupo,
+##  el segundo es el número uno o dos, según la candición para crear gráficas
+##  de Cayley localmente <M>3K_{2}</M> que se quiera verificar.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CCPosiblesT" );
