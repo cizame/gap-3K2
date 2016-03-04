@@ -63,6 +63,38 @@ ListaTBuenas := function ( g, a )
     return l2;
 end;
 
+PosibleCuello := function( T )
+    local XX, T1, k, Multipli;
+    XX := ShallowCopy( T );
+    T1 := [T[1]*T[1]^-1];
+    Multipli := function (l)
+        local i, j, TT, aux;
+        TT := [];
+        for j in [1..Length(XX)] do
+            for i in [1..6] do
+                Add(TT,XX[j]*T[i]);
+            od;
+        od;
+        aux := Union(XX,T1);
+        T1 := ShallowCopy(XX);
+        TT := Set(TT);
+        SubtractSet(TT,Set(aux));
+        XX := Set(TT);
+        Print("\n medida de XX ", Length(XX),"\n");
+        if Length(XX) = 6*4^(l) then
+            Multipli(l+1);
+        else
+            k := 2*(l+1);
+        fi;
+    end;
+    if Length(XX) <> 6 then
+        return fail;
+    else
+        Multipli(1);
+        Print("El cuello de triángulos de la gráfica generada por",T," es ", k-1 ," o ",k," .\n");
+    fi;
+    return k;   
+end;
 
 ExaminaGrupo:= function(g,a)
     local l, l1, orb, aut, i, C;
@@ -76,7 +108,7 @@ ExaminaGrupo:= function(g,a)
     # orb := [];
     # Print(Length(l),"\n");
     for i in [1..Length(l)] do
-        C[i] := CCPosibleCuello(l[i]);
+        C[i] := PosibleCuello(l[i]);
     od;
     return C;
 end;

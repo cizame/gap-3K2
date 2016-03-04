@@ -133,17 +133,20 @@ InstallGlobalFunction( CCPosibleCuello, function( T )
         T1 := ShallowCopy(XX);
         SubtractSet(Set(TT),Set(aux));
         XX := Set(TT);
+        Print("medida de XX ", Length(XX),"\n");
+        
         if Length(XX) = 6*4^(l+1) then
             Multipli(l+1);
         else
             k := l;
+            Print("k= ", k ,"\n");
         fi;
     end;
     if Length(XX) <> 6 then
         return fail;
     else
         Multipli(1);
-        Print("El cuello de la gráfica generada por",T," es ", 2*(k+1) ," o ", 2*(k+1)+1," .\n");
+#        Print("El cuello de la gráfica generada por",T," es ", 2*(k+1) ," o ", 2*(k+1)+1," .\n");
     fi;
     return k;   
 end);
