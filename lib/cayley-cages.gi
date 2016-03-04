@@ -27,13 +27,10 @@ end);
 InstallGlobalFunction( CCConjuntoT1, function( a,b,c )
         local l;
     l := [a,a^-1,b,b^-1,c,c^-1];
-
     if Length(Set(l)) <> 6 then
         return fail;
-        Print(l,"\n");
-        
     elif
-        Order(a)<>1 or Order(b) or Order(c) then
+        Order(a)<>3 or Order(b)<>3 or Order(c)<>3 then
         return fail;        
     elif
       a*b = c^-1 then
@@ -211,21 +208,14 @@ InstallGlobalFunction( CCListaTBuenas, function( g, a )
     else
         l := Filtered(Elements(g), x-> not Order(x)=3);
     fi;
-        Print(l,"\n");
-
     l1 := ShallowCopy(CCEliminaInversos(l));
     l := Set(CCPosiblesT(l1,a));
     orb := Orbits(aut,Set(l),OnSets);
     l := List(orb,x->x[1]);
     orb := [];
-        Print(Length(l),"\n");
-
     if a=1 then
         for i in [1..Length(l)] do
-                Print(l[i],"\n");
-
             t := CCConjuntoT1(l[i][1],l[i][2],l[i][3]);
-             Print("t=",t,"\n");
             if t<>fail then
                 Add(l2,t);
             fi;
@@ -233,11 +223,8 @@ InstallGlobalFunction( CCListaTBuenas, function( g, a )
     else
         for i in [1..Length(l)] do
             t := CCConjuntoT2(l[i][1],l[i][2]);
-            Print("t=",t,"\n");
-            
             if t<>fail then
                 Add(l2,t);
-                Print(l2,"\n");
             fi;
         od;
     fi;
