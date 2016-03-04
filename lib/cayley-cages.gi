@@ -11,11 +11,10 @@
 ##
 InstallGlobalFunction( CCEliminaInversos, function( l )
    local l1,i;
-   l1:=[];  
-    
+   l1 := [];  
     for i in [1..Length(l)] do
         if not (l[i] in l1) and not (l[i]^-1 in l1) then 
-            l1:=Union(l1,[l[i]]);
+            l1 := Union(l1,[l[i]]);
         fi;  
     od;
     
@@ -134,8 +133,6 @@ InstallGlobalFunction( CCPosibleCuello, function( T )
         T1 := ShallowCopy(XX);
         SubtractSet(Set(TT),Set(aux));
         XX := Set(TT);
-        Print("medida tt= ",Length(XX));
-        
         if Length(XX) = 6*4^(l+1) then
             Multipli(l+1);
         else
@@ -146,7 +143,7 @@ InstallGlobalFunction( CCPosibleCuello, function( T )
         return fail;
     else
         Multipli(1);
-        Print("El cuello de la gráfica generada por",T," es ", 2*k ," o ", 2*k+1," .\n");
+        Print("El cuello de la gráfica generada por",T," es ", 2*(k+1) ," o ", 2*(k+1)+1," .\n");
     fi;
     return k;   
 end);
@@ -229,4 +226,16 @@ InstallGlobalFunction( CCListaTBuenas, function( g, a )
         od;
     fi;
     return l2;
+end);
+
+#F  CCExaminaGrupo( g, a ) 
+##
+InstallGlobalFunction( CCExaminaGrupo, function( g, a )
+    local l, l1, orb, aut, i, C;
+    l := CCListaTBuenas(g,a);
+    C := [];
+    for i in [1..Length(l)] do
+        C[i] := CCPosibleCuello(l[i]);
+    od;
+    return C;   
 end);

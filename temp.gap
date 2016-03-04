@@ -32,7 +32,6 @@ ListaTBuenas := function ( g, a )
         l := Filtered(Elements(g), x-> not Order(x)=3);
     fi;
         Print(l,"\n");
-
     l1 := ShallowCopy(CCEliminaInversos(l));
     l := Set(CCPosiblesT(l1,a));
     orb := Orbits(aut,Set(l),OnSets);
@@ -62,4 +61,22 @@ ListaTBuenas := function ( g, a )
         od;
     fi;
     return l2;
+end;
+
+
+ExaminaGrupo:= function(g,a)
+    local l, l1, orb, aut, i, C;
+    l := CCListaTBuenas(g,a);
+    C := [];
+    # Print(Length(l),"\n");
+    # aut := AutomorphismGroup(g);
+    # Print(IsSet(Set(l)),"\n");
+    # orb := Orbits(aut,Set(l),OnSets);
+    # l := List(orb,x->x[1]);
+    # orb := [];
+    # Print(Length(l),"\n");
+    for i in [1..Length(l)] do
+        C[i] := CCPosibleCuello(l[i]);
+    od;
+    return C;
 end;

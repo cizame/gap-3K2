@@ -31,5 +31,7 @@ entries :=
   [ "\033[2XCCEsGraficaDeCayley\033[102X", "1.1-7", [ 1, 1, 7 ], 61, 5, 
       "ccesgraficadecayley", "X829E31E1812E7804" ], 
   [ "\033[2XCCListaTBuenas\033[102X", "1.1-8", [ 1, 1, 8 ], 68, 5, 
-      "cclistatbuenas", "X7EFAA0237E0004DC" ] ]
+      "cclistatbuenas", "X7EFAA0237E0004DC" ], 
+  [ "\033[2XCCExaminaGrupo\033[102X", "1.1-9", [ 1, 1, 9 ], 78, 5, 
+      "ccexaminagrupo", "X828D9B4C8225E953" ] ]
 );

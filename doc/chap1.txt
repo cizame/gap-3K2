@@ -75,3 +75,13 @@
   de  seis  elementos del grupo dado, los cuales construyen gráficas de Cayley
   localmente [22X3K_2[122X.[133X
   
+  [1X1.1-9 CCExaminaGrupo[101X
+  
+  [29X[2XCCExaminaGrupo[102X( [3Xgrupo[103X, [3Xnúmero_1_o_2[103X ) [32X function
+  
+  [33X[0;0YRecibe dos argumentos el primero es un grupo y el segundo es el número uno o
+  dos  según  sea  el  cado de acuerdo al tipo uno o dos de gráficas de Cayley
+  Localmente [22X3K_2[122X que se quiera construir. A partir de los elementos del grupo
+  se  construyen  conjuntos  que  generen gráficas de Cayley localmente [22X3K_2[122X y
+  regresa los valores de los posibles cuellos;[133X
+  
