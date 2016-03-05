@@ -25,7 +25,7 @@ end);
 ##
 InstallGlobalFunction( CCConjuntoT1, function( a,b,c )
         local l;
-    l := [a,a^-1,b,b^-1,c,c^-1];
+    l := Set([a,a^-1,b,b^-1,c,c^-1]);
     if Length(Set(l)) <> 6 then
         return fail;
     elif
@@ -234,8 +234,6 @@ InstallGlobalFunction( CCExaminaGrupo, function( g,c,a )
     l := CCListaTBuenas(g,a);
     C := [];
     aut := AutomorphismGroup(g);
-    Print("l cclistatbuenas es set ",(l),"\n");
-    
     orb := Orbits(aut,Set(l),OnSets);
     l := List(orb,x->x[1]);
     orb := [];
