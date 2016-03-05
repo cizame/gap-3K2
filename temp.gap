@@ -80,7 +80,6 @@ PosibleCuello := function( T )
         TT := Set(TT);
         SubtractSet(TT,Set(aux));
         XX := Set(TT);
-        Print("\n medida de XX ", Length(XX),"\n");
         if Length(XX) = 6*4^(l) then
             Multipli(l+1);
         else
@@ -91,7 +90,6 @@ PosibleCuello := function( T )
         return fail;
     else
         Multipli(1);
-        Print("El cuello de triángulos de la gráfica generada por",T," es ", k-1 ," o ",k," .\n");
     fi;
     return k;   
 end;
@@ -100,15 +98,13 @@ ExaminaGrupo:= function(g,a)
     local l, l1, orb, aut, i, C;
     l := CCListaTBuenas(g,a);
     C := [];
-    # Print(Length(l),"\n");
-    # aut := AutomorphismGroup(g);
-    # Print(IsSet(Set(l)),"\n");
-    # orb := Orbits(aut,Set(l),OnSets);
-    # l := List(orb,x->x[1]);
-    # orb := [];
-    # Print(Length(l),"\n");
+    aut := AutomorphismGroup(g);
+    orb := Orbits(aut,Set(l),OnSets);
+    l := List(orb,x->x[1]);
+    orb := [];
     for i in [1..Length(l)] do
-        C[i] := PosibleCuello(l[i]);
+        C[i] := [l[i],PosibleCuello(l[i])];
     od;
     return C;
 end;
+

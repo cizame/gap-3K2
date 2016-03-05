@@ -131,41 +131,9 @@ InstallGlobalFunction( CCPosibleCuello, function( T )
         od;
         aux := Union(XX,T1);
         T1 := ShallowCopy(XX);
-        SubtractSet(Set(TT),Set(aux));
-        XX := Set(TT);
-        Print("medida de XX ", Length(XX),"\n");
-        
-        if Length(XX) = 6*4^(l+1) then
-            Multipli(l+1);
-        else
-            k := l;
-            Print("k= ", k ,"\n");
-        fi;
-    end;
-    if Length(XX) <> 6 then
-        return fail;
-    else
-        Multipli(1);
-#        Print("El cuello de la gráfica generada por",T," es ", 2*(k+1) ," o ", 2*(k+1)+1," .\n");
-    fi;
-    return k;   
-    local XX, T1, k, Multipli;
-    XX := ShallowCopy( T );
-    T1 := [T[1]*T[1]^-1];
-    Multipli := function (l)
-        local i, j, TT, aux;
-        TT := [];
-        for j in [1..Length(XX)] do
-            for i in [1..6] do
-                Add(TT,XX[j]*T[i]);
-            od;
-        od;
-        aux := Union(XX,T1);
-        T1 := ShallowCopy(XX);
         TT := Set(TT);
         SubtractSet(TT,Set(aux));
         XX := Set(TT);
-        Print("\n medida de XX ", Length(XX),"\n");
         if Length(XX) = 6*4^(l) then
             Multipli(l+1);
         else
@@ -176,9 +144,8 @@ InstallGlobalFunction( CCPosibleCuello, function( T )
         return fail;
     else
         Multipli(1);
-        Print("El cuello de triángulos de la gráfica generada por",T," es ", k-1 ," o ",k," .\n");
     fi;
-    return k;   
+    return k;    
 end);
 
 #F  CCPosiblesT( l , a ) 
@@ -267,8 +234,12 @@ InstallGlobalFunction( CCExaminaGrupo, function( g, a )
     local l, l1, orb, aut, i, C;
     l := CCListaTBuenas(g,a);
     C := [];
+    aut := AutomorphismGroup(g);
+    orb := Orbits(aut,Set(l),OnSets);
+    l := List(orb,x->x[1]);
+    orb := [];
     for i in [1..Length(l)] do
-        C[i] := CCPosibleCuello(l[i]);
+        C[i] := [l[i],PosibleCuello(l[i])];
     od;
-    return C;   
+    return C;
 end);
