@@ -145,3 +145,26 @@ TsParaCuelloDado:= function(g,c,a)
     od; 
     return LG;
 end;
+
+
+Prueba:= function(r1,r2,c,a)
+    local i, j, k, A, L, LL;
+    L := [];
+    k := 0;
+    for i in [r1..r2] do
+        A := AllSmallGroups(i);
+        for j in [1..Length(A)] do
+            if IsAbelian(A[j])=false then
+                LL := CCExaminaGrupo(A[j],c,a);
+                if LL<>[] then
+                    k := k+1;
+                    L[k] := [LL,i,j];
+                    Print("\n k ", k );
+                fi;                
+            fi;            
+        od;
+        A := [];
+    od;
+    return L;    
+end;
+    

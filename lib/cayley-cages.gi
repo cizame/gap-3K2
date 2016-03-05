@@ -234,6 +234,8 @@ InstallGlobalFunction( CCExaminaGrupo, function( g,c,a )
     l := CCListaTBuenas(g,a);
     C := [];
     aut := AutomorphismGroup(g);
+    Print("l cclistatbuenas es set ",(l),"\n");
+    
     orb := Orbits(aut,Set(l),OnSets);
     l := List(orb,x->x[1]);
     orb := [];
@@ -275,7 +277,7 @@ InstallGlobalFunction( CCTsParaCuelloDado, function( g, c, a )
     L := CCExaminaGrupo(g,c,a);    
     for i in [1..Length(L)] do
         GG := CayleyGraph(g,L[i][1]);
-        BG := Girth(GraficaDePuntosYTriangulos(GG));
+        BG := Girth(CCGraficaDePuntosYTriangulos(GG));
         if BG>=2*c then
             Add(LG,[L[i][1],BG]);
         fi;
