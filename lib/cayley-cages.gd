@@ -149,3 +149,17 @@ DeclareGlobalFunction( "CCListaTBuenas" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CCExaminaGrupo" );
+
+#F  CCGraficaDePuntosYTriangulos( g ) 
+##
+##  <#GAPDoc Label="CCGraficaDePuntosYTriangulos">
+##  <ManSection>
+##  <Func Name="CCGraficaDePuntosYTriangulos" Arg="gráfica"/>
+##
+##  <Description>
+##  Recibe una gráfica localmente <M>3K_2</M> y regresa su gráfica
+##  bipartita clánica.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CCGraficaDePuntosYTriangulos" );

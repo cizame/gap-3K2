@@ -85,3 +85,9 @@
   se  construyen  conjuntos  que  generen gráficas de Cayley localmente [22X3K_2[122X y
   regresa los valores de los posibles cuellos;[133X
   
+  [1X1.1-10 CCGraficaDePuntosYTriangulos[101X
+  
+  [29X[2XCCGraficaDePuntosYTriangulos[102X( [3Xgráfica[103X ) [32X function
+  
+  [33X[0;0YRecibe una gráfica localmente [22X3K_2[122X y regresa su gráfica bipartita clánica.[133X
+  

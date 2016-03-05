@@ -15,7 +15,7 @@
     <#Include Label="CCEsGraficaDeCayley">
     <#Include Label="CCListaTBuenas">
     <#Include Label="CCExaminaGrupo">
-    
+    <#Include Label="CCGraficaDePuntosYTriangulos">    
 
   </Section>
 </Chapter>

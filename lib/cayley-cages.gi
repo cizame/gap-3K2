@@ -243,3 +243,26 @@ InstallGlobalFunction( CCExaminaGrupo, function( g, a )
     C1 := Filtered(C, i -> i[2] >= c);
     return C1;
 end);
+
+#F  CCGraficaDePuntosYTriangulos( g ) 
+##
+InstallGlobalFunction( CCGraficaDePuntosYTriangulos, function( g )
+    local triang,verts,ady,act,g2,TrivialAction;
+    TrivialAction:= function(x,g) return x; end;
+    ady := function(u,v)
+        if not(IsList(u)) and IsList(v) then
+            return u in v;
+        else
+            return false;
+        fi;
+    end;
+    g2 := NewGroupGraph(Group(()),g);
+    triang := Cliques(g2);
+    return
+      UnderlyingGraph(Graph(
+              Group(()),
+              Union(triang,Vertices(g)),
+              TrivialAction,
+              ady,
+              true)); 
+end);

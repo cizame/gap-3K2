@@ -3,20 +3,18 @@ HELPBOOKINFOSIXTMP := rec(
 encoding := "UTF-8",
 bookname := "3K2",
 entries :=
-[ [ "Title page", ".", [ 0, 0, 0 ], 1, 1, "title page", "X7D2C85EC87DD46E5" ]
-    , 
-  [ "Copyright", ".-1", [ 0, 0, 1 ], 28, 2, "copyright", "X81488B807F2A1CF1" 
-     ], 
-  [ "Table of Contents", ".-2", [ 0, 0, 2 ], 39, 3, "table of contents", 
+[ [ "Title page", ".", [ 0, 0, 0 ], 1, 1, "title page", "X7D2C85EC87DD46E5" ],
+  [ "Copyright", ".-1", [ 0, 0, 1 ], 28, 2, "copyright", "X81488B807F2A1CF1" ]
+    , [ "Table of Contents", ".-2", [ 0, 0, 2 ], 39, 3, "table of contents", 
       "X8537FEB07AF2BEC8" ], 
   [ 
-      "\033[1X\033[33X\033[0;-2YGr\303\241ficas localmente 3K2\033[133X\033[101X\
-", "1", [ 1, 0, 0 ], 1, 4, "gra\241ficas localmente 3k2", 
+      "\033[1X\033[33X\033[0;-2YGr\303\241ficas localmente 3K2\033[133X\033[101X"
+        , "1", [ 1, 0, 0 ], 1, 4, "gra\241ficas localmente 3k2", 
       "X7D713E817FA8487B" ], 
   [ 
-      "\033[1X\033[33X\033[0;-2YGr\303\241ficas de Cayley localmente 3K2\033[133\
-X\033[101X", "1.1", [ 1, 1, 0 ], 4, 4, 
-      "gra\241ficas de cayley localmente 3k2", "X7C7DF3F586E8A8D5" ], 
+      "\033[1X\033[33X\033[0;-2YGr\303\241ficas de Cayley localmente 3K2\033[133X\
+\033[101X", "1.1", [ 1, 1, 0 ], 4, 4, "gra\241ficas de cayley localmente 3k2",
+      "X7C7DF3F586E8A8D5" ], 
   [ "Index", "ind", [ "Ind", 0, 0 ], 1, 6, "index", "X83A0356F839C696F" ], 
   [ "\033[2XCCEliminaInversos\033[102X", "1.1-1", [ 1, 1, 1 ], 7, 4, 
       "cceliminainversos", "X78B540B77A6AD15A" ], 
@@ -35,5 +33,7 @@ X\033[101X", "1.1", [ 1, 1, 0 ], 4, 4,
   [ "\033[2XCCListaTBuenas\033[102X", "1.1-8", [ 1, 1, 8 ], 68, 5, 
       "cclistatbuenas", "X7EFAA0237E0004DC" ], 
   [ "\033[2XCCExaminaGrupo\033[102X", "1.1-9", [ 1, 1, 9 ], 78, 5, 
-      "ccexaminagrupo", "X828D9B4C8225E953" ] ]
+      "ccexaminagrupo", "X828D9B4C8225E953" ], 
+  [ "\033[2XCCGraficaDePuntosYTriangulos\033[102X", "1.1-10", [ 1, 1, 10 ], 
+      88, 5, "ccgraficadepuntosytriangulos", "X86C556EC7C3F2342" ] ]
 );
