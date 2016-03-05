@@ -65,7 +65,6 @@ end);
 InstallGlobalFunction( CCConjuntoT2, function( a,b )
         local l;
     if Order(a)<>3 and Order(b)<>3 and Order(a^-1*b)<>3 then 
-
         l :=Set([a,a^-1,b,b^-1,a^-1*b,b^-1*a]);
         if Length(l) <> 6 then
             return fail;
@@ -231,7 +230,7 @@ end);
 #F  CCExaminaGrupo( g, a ) 
 ##
 InstallGlobalFunction( CCExaminaGrupo, function( g, a )
-    local l, l1, orb, aut, i, C;
+    local l, l1, orb, aut, i, C, C1;
     l := CCListaTBuenas(g,a);
     C := [];
     aut := AutomorphismGroup(g);
@@ -240,6 +239,7 @@ InstallGlobalFunction( CCExaminaGrupo, function( g, a )
     orb := [];
     for i in [1..Length(l)] do
         C[i] := [l[i],PosibleCuello(l[i])];
-    od;
-    return C;
+    od;    
+    C1 := Filtered(C, i -> i[2] >= c);
+    return C1;
 end);

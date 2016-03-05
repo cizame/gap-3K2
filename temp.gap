@@ -94,8 +94,8 @@ PosibleCuello := function( T )
     return k;   
 end;
 
-ExaminaGrupo:= function(g,a)
-    local l, l1, orb, aut, i, C;
+ExaminaGrupo:= function(g, c, a)
+    local l, l1, orb, aut, i, C, C1;
     l := CCListaTBuenas(g,a);
     C := [];
     aut := AutomorphismGroup(g);
@@ -104,7 +104,10 @@ ExaminaGrupo:= function(g,a)
     orb := [];
     for i in [1..Length(l)] do
         C[i] := [l[i],PosibleCuello(l[i])];
-    od;
-    return C;
+    od;    
+    C1 := Filtered(C, i -> i[2] >= c);
+    return C1;
 end;
+
+
 
