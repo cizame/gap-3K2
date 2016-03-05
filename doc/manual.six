@@ -15,7 +15,7 @@ entries :=
       "\033[1X\033[33X\033[0;-2YGr\303\241ficas de Cayley localmente 3K2\033[133X\
 \033[101X", "1.1", [ 1, 1, 0 ], 4, 4, "gra\241ficas de cayley localmente 3k2",
       "X7C7DF3F586E8A8D5" ], 
-  [ "Index", "ind", [ "Ind", 0, 0 ], 1, 6, "index", "X83A0356F839C696F" ], 
+  [ "Index", "ind", [ "Ind", 0, 0 ], 1, 7, "index", "X83A0356F839C696F" ], 
   [ "\033[2XCCEliminaInversos\033[102X", "1.1-1", [ 1, 1, 1 ], 7, 4, 
       "cceliminainversos", "X78B540B77A6AD15A" ], 
   [ "\033[2XCCConjuntoT1\033[102X", "1.1-2", [ 1, 1, 2 ], 14, 4, 
@@ -35,5 +35,7 @@ entries :=
   [ "\033[2XCCExaminaGrupo\033[102X", "1.1-9", [ 1, 1, 9 ], 78, 5, 
       "ccexaminagrupo", "X828D9B4C8225E953" ], 
   [ "\033[2XCCGraficaDePuntosYTriangulos\033[102X", "1.1-10", [ 1, 1, 10 ], 
-      88, 5, "ccgraficadepuntosytriangulos", "X86C556EC7C3F2342" ] ]
+      92, 5, "ccgraficadepuntosytriangulos", "X86C556EC7C3F2342" ], 
+  [ "\033[2XCCTsParaCuelloDado\033[102X", "1.1-11", [ 1, 1, 11 ], 98, 6, 
+      "cctsparacuellodado", "X7BAD26BB86E655C4" ] ]
 );

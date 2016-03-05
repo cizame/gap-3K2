@@ -148,7 +148,7 @@ DeclareGlobalFunction( "CCListaTBuenas" );
 ##  localmente <M>3K_2</M> y los filtra usando los valores de los posibles
 ##  cuellos, finalmente regresa una lista cuyos elementos son listas con dos
 ##  entradas, la primera es el conjunto <M>T</M> que genera una gráfica de
-##  Cayley localmente <M>3K_2</M> y la segunda el cuello mas grande que podría
+##  Cayley localmente <M>3K_2</M> y la segunda el cuello más grande que podría
 ##  tener dicha gráfica.  
 ##  </Description>
 ##  </ManSection>
@@ -168,3 +168,22 @@ DeclareGlobalFunction( "CCExaminaGrupo" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CCGraficaDePuntosYTriangulos" );
+
+#F  CCTsParaCuelloDado( g, c, a ) 
+##
+##  <#GAPDoc Label="CCTsParaCuelloDado">
+##  <ManSection>
+##  <Func Name="CCTsParaCuelloDado" Arg="grupo, cuello_de_triángulos, número"/>
+##
+##  <Description>
+##  Recibe tres parametros: un grupo, el cuello de triangulos que se desea y
+##  el número uno o dos según sea el caso de acuerdo al tipo de gráficas de
+##  Cayley localmente <M>3K_2</M> que se quiera construir. La función regresa
+##  una lista  cuyos elementos son listas con dos
+##  entradas, la primera es el conjunto <M>T</M> que genera una gráfica de
+##  Cayley localmente <M>3K_2</M> con el cuello de triangulos que se desea y
+##  la segunda es el cuello de su grafica bipartita clánica.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CCTsParaCuelloDado" );

@@ -10,4 +10,5 @@
 \contentsline {subsection}{\numberline {1.1.8}\leavevmode {\color {Chapter }CCListaTBuenas}}{5}{subsection.1.1.8}
 \contentsline {subsection}{\numberline {1.1.9}\leavevmode {\color {Chapter }CCExaminaGrupo}}{5}{subsection.1.1.9}
 \contentsline {subsection}{\numberline {1.1.10}\leavevmode {\color {Chapter }CCGraficaDePuntosYTriangulos}}{5}{subsection.1.1.10}
-\contentsline {chapter}{Index}{6}{section*.3}
+\contentsline {subsection}{\numberline {1.1.11}\leavevmode {\color {Chapter }CCTsParaCuelloDado}}{6}{subsection.1.1.11}
+\contentsline {chapter}{Index}{7}{section*.3}

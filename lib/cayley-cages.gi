@@ -238,7 +238,7 @@ InstallGlobalFunction( CCExaminaGrupo, function( g,c,a )
     l := List(orb,x->x[1]);
     orb := [];
     for i in [1..Length(l)] do
-        C[i] := [l[i],PosibleCuello(l[i])];
+        C[i] := [l[i],CCPosibleCuello(l[i])];
     od;    
     C1 := Filtered(C, i -> i[2] >= c);
     return C1;                         
@@ -265,4 +265,20 @@ InstallGlobalFunction( CCGraficaDePuntosYTriangulos, function( g )
               TrivialAction,
               ady,
               true)); 
+end);
+
+#F  CCTsParaCuelloDado( g, c, a ) 
+##
+InstallGlobalFunction( CCTsParaCuelloDado, function( g, c, a )
+    local L, LG, i, GG, BG;
+    LG := [];
+    L := CCExaminaGrupo(g,c,a);    
+    for i in [1..Length(L)] do
+        GG := CayleyGraph(g,L[i][1]);
+        BG := Girth(GraficaDePuntosYTriangulos(GG));
+        if BG>=2*c then
+            Add(LG,[L[i][1],BG]);
+        fi;
+    od; 
+    return LG;
 end);

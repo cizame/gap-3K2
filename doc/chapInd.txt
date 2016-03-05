@@ -12,6 +12,7 @@
   [2XCCListaTBuenas[102X  1.1-8
   [2XCCPosibleCuello[102X  1.1-5
   [2XCCPosiblesT[102X  1.1-6
+  [2XCCTsParaCuelloDado[102X  1.1-11
   
   
   -------------------------------------------------------

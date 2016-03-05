@@ -79,15 +79,30 @@
   
   [29X[2XCCExaminaGrupo[102X( [3Xgrupo[103X, [3Xnúmero_1_o_2[103X ) [32X function
   
-  [33X[0;0YRecibe dos argumentos el primero es un grupo y el segundo es el número uno o
-  dos  según  sea  el  cado de acuerdo al tipo uno o dos de gráficas de Cayley
-  Localmente [22X3K_2[122X que se quiera construir. A partir de los elementos del grupo
-  se  construyen  conjuntos  que  generen gráficas de Cayley localmente [22X3K_2[122X y
-  regresa los valores de los posibles cuellos;[133X
+  [33X[0;0YRecibe  tres  argumentos el primero es un grupo, el segundo es el tamaño del
+  cuello  de triángulos que se desea y el tercero es el número uno o dos según
+  sea  el caso de acuerdo al tipo, uno o dos, de gráficas de Cayley Localmente
+  [22X3K_2[122X  que  se  quiera  construir.  A  partir  de  los elementos del grupo se
+  construyen  conjuntos  que  generen gráficas de Cayley localmente [22X3K_2[122X y los
+  filtra  usando  los  valores de los posibles cuellos, finalmente regresa una
+  lista cuyos elementos son listas con dos entradas, la primera es el conjunto
+  [22XT[122X  que  genera  una gráfica de Cayley localmente [22X3K_2[122X y la segunda el cuello
+  más grande que podría tener dicha gráfica.[133X
   
   [1X1.1-10 CCGraficaDePuntosYTriangulos[101X
   
   [29X[2XCCGraficaDePuntosYTriangulos[102X( [3Xgráfica[103X ) [32X function
   
   [33X[0;0YRecibe una gráfica localmente [22X3K_2[122X y regresa su gráfica bipartita clánica.[133X
+  
+  [1X1.1-11 CCTsParaCuelloDado[101X
+  
+  [29X[2XCCTsParaCuelloDado[102X( [3Xgrupo[103X, [3Xcuello_de_triángulos[103X, [3Xnúmero[103X ) [32X function
+  
+  [33X[0;0YRecibe  tres parametros: un grupo, el cuello de triangulos que se desea y el
+  número  uno o dos según sea el caso de acuerdo al tipo de gráficas de Cayley
+  localmente  [22X3K_2[122X que se quiera construir. La función regresa una lista cuyos
+  elementos  son  listas  con  dos  entradas,  la primera es el conjunto [22XT[122X que
+  genera una gráfica de Cayley localmente [22X3K_2[122X con el cuello de triangulos que
+  se desea y la segunda es el cuello de su grafica bipartita clánica.[133X
   

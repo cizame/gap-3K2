@@ -261,10 +261,14 @@ localmente $3K_2$. }
 }\hfill{\scriptsize (function)}}\\
 
 
- Recibe dos argumentos el primero es un grupo y el segundo es el n{\a'u}mero
-uno o dos seg{\a'u}n sea el cado de acuerdo al tipo uno o dos de gr{\a'a}ficas
-de Cayley Localmente $3K_2$ que se quiera construir. A partir de los elementos del grupo se construyen
-conjuntos que generen gr{\a'a}ficas de Cayley localmente $3K_2$ y regresa los valores de los posibles cuellos; }
+ Recibe tres argumentos el primero es un grupo, el segundo es el tama{\~n}o del
+cuello de tri{\a'a}ngulos que se desea y el tercero es el n{\a'u}mero uno o
+dos seg{\a'u}n sea el caso de acuerdo al tipo, uno o dos, de gr{\a'a}ficas de
+Cayley Localmente $3K_2$ que se quiera construir. A partir de los elementos del grupo se construyen
+conjuntos que generen gr{\a'a}ficas de Cayley localmente $3K_2$ y los filtra usando los valores de los posibles cuellos, finalmente regresa
+una lista cuyos elementos son listas con dos entradas, la primera es el
+conjunto $T$ que genera una gr{\a'a}fica de Cayley localmente $3K_2$ y la segunda el cuello m{\a'a}s grande que podr{\a'\i}a tener dicha
+gr{\a'a}fica. }
 
  
 
@@ -277,6 +281,22 @@ conjuntos que generen gr{\a'a}ficas de Cayley localmente $3K_2$ y regresa los va
 
 
  Recibe una gr{\a'a}fica localmente $3K_2$ y regresa su gr{\a'a}fica bipartita cl{\a'a}nica. }
+
+ 
+
+\subsection{\textcolor{Chapter }{CCTsParaCuelloDado}}
+\logpage{[ 1, 1, 11 ]}\nobreak
+\hyperdef{L}{X7BAD26BB86E655C4}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{CCTsParaCuelloDado({\mdseries\slshape grupo, cuello{\textunderscore}de{\textunderscore}tri{\a'a}ngulos, n{\a'u}mero})\index{CCTsParaCuelloDado@\texttt{CCTsParaCuelloDado}}
+\label{CCTsParaCuelloDado}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Recibe tres parametros: un grupo, el cuello de triangulos que se desea y el
+n{\a'u}mero uno o dos seg{\a'u}n sea el caso de acuerdo al tipo de
+gr{\a'a}ficas de Cayley localmente $3K_2$ que se quiera construir. La funci{\a'o}n regresa una lista cuyos elementos son
+listas con dos entradas, la primera es el conjunto $T$ que genera una gr{\a'a}fica de Cayley localmente $3K_2$ con el cuello de triangulos que se desea y la segunda es el cuello de su
+grafica bipartita cl{\a'a}nica. }
 
  }
 

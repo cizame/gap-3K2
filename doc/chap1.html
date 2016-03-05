@@ -34,6 +34,7 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7EFAA0237E0004DC">1.1-8 CCListaTBuenas</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X828D9B4C8225E953">1.1-9 CCExaminaGrupo</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X86C556EC7C3F2342">1.1-10 CCGraficaDePuntosYTriangulos</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7BAD26BB86E655C4">1.1-11 CCTsParaCuelloDado</a></span>
 </div></div>
 </div>
 
@@ -104,7 +105,7 @@
 <h5>1.1-9 CCExaminaGrupo</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CCExaminaGrupo</code>( <var class="Arg">grupo</var>, <var class="Arg">número_1_o_2</var> )</td><td class="tdright">( function )</td></tr></table></div>
-<p>Recibe dos argumentos el primero es un grupo y el segundo es el número uno o dos según sea el cado de acuerdo al tipo uno o dos de gráficas de Cayley Localmente <span class="SimpleMath">3K_2</span> que se quiera construir. A partir de los elementos del grupo se construyen conjuntos que generen gráficas de Cayley localmente <span class="SimpleMath">3K_2</span> y regresa los valores de los posibles cuellos;</p>
+<p>Recibe tres argumentos el primero es un grupo, el segundo es el tamaño del cuello de triángulos que se desea y el tercero es el número uno o dos según sea el caso de acuerdo al tipo, uno o dos, de gráficas de Cayley Localmente <span class="SimpleMath">3K_2</span> que se quiera construir. A partir de los elementos del grupo se construyen conjuntos que generen gráficas de Cayley localmente <span class="SimpleMath">3K_2</span> y los filtra usando los valores de los posibles cuellos, finalmente regresa una lista cuyos elementos son listas con dos entradas, la primera es el conjunto <span class="SimpleMath">T</span> que genera una gráfica de Cayley localmente <span class="SimpleMath">3K_2</span> y la segunda el cuello más grande que podría tener dicha gráfica.</p>
 
 <p><a id="X86C556EC7C3F2342" name="X86C556EC7C3F2342"></a></p>
 
@@ -112,6 +113,13 @@
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CCGraficaDePuntosYTriangulos</code>( <var class="Arg">gráfica</var> )</td><td class="tdright">( function )</td></tr></table></div>
 <p>Recibe una gráfica localmente <span class="SimpleMath">3K_2</span> y regresa su gráfica bipartita clánica.</p>
+
+<p><a id="X7BAD26BB86E655C4" name="X7BAD26BB86E655C4"></a></p>
+
+<h5>1.1-11 CCTsParaCuelloDado</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CCTsParaCuelloDado</code>( <var class="Arg">grupo</var>, <var class="Arg">cuello_de_triángulos</var>, <var class="Arg">número</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Recibe tres parametros: un grupo, el cuello de triangulos que se desea y el número uno o dos según sea el caso de acuerdo al tipo de gráficas de Cayley localmente <span class="SimpleMath">3K_2</span> que se quiera construir. La función regresa una lista cuyos elementos son listas con dos entradas, la primera es el conjunto <span class="SimpleMath">T</span> que genera una gráfica de Cayley localmente <span class="SimpleMath">3K_2</span> con el cuello de triangulos que se desea y la segunda es el cuello de su grafica bipartita clánica.</p>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapInd.html">[Next Chapter]</a>&nbsp;  </div>
