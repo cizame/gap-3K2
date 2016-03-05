@@ -131,3 +131,19 @@ GraficaDePuntosYTriangulos := function(g)
               ady,
               true));
 end;
+
+ALista:= function(g,c,a)
+    local L, LG, i, GG, BG;
+    LG := [];
+    L := CCExaminaGrupo(g,c,a);
+    Print();
+    
+    for i in [1..Length(L)] do
+        GG := CayleyGraph(g,L[i][1]);
+        Print("\n", IsGraph(GG));        
+        # BG := Girth(GraficaDePutosYTriangulos(GG));
+        # if BG>=2*c then
+        #     Add(LG,[L[i][1],BG]);
+        # fi;
+    od;    
+end;

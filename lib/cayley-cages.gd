@@ -140,11 +140,16 @@ DeclareGlobalFunction( "CCListaTBuenas" );
 ##  <Func Name="CCExaminaGrupo" Arg="grupo, número_1_o_2"/>
 ##
 ##  <Description>
-##  Recibe dos argumentos el primero es un grupo y el segundo es el número
-##  uno o dos según sea el cado de acuerdo al tipo uno o dos de gráficas de
+##  Recibe tres argumentos el primero es un grupo, el segundo es el
+##  tamaño del cuello de triángulos que se desea y el tercero es el número
+##  uno o dos según sea el caso de acuerdo al tipo, uno o dos, de gráficas de
 ##  Cayley Localmente <M>3K_2</M> que se quiera construir. A partir de los 
 ##  elementos del grupo se construyen conjuntos que generen gráficas de Cayley 
-##  localmente <M>3K_2</M> y regresa los valores de los posibles cuellos;
+##  localmente <M>3K_2</M> y los filtra usando los valores de los posibles
+##  cuellos, finalmente regresa una lista cuyos elementos son listas con dos
+##  entradas, la primera es el conjunto <M>T</M> que genera una gráfica de
+##  Cayley localmente <M>3K_2</M> y la segunda el cuello mas grande que podría
+##  tener dicha gráfica.  
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>

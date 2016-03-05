@@ -227,9 +227,9 @@ InstallGlobalFunction( CCListaTBuenas, function( g, a )
     return l2;
 end);
 
-#F  CCExaminaGrupo( g, a ) 
+#F  CCExaminaGrupo( g, c, a ) 
 ##
-InstallGlobalFunction( CCExaminaGrupo, function( g, a )
+InstallGlobalFunction( CCExaminaGrupo, function( g,c,a )
     local l, l1, orb, aut, i, C, C1;
     l := CCListaTBuenas(g,a);
     C := [];
@@ -241,7 +241,7 @@ InstallGlobalFunction( CCExaminaGrupo, function( g, a )
         C[i] := [l[i],PosibleCuello(l[i])];
     od;    
     C1 := Filtered(C, i -> i[2] >= c);
-    return C1;
+    return C1;                         
 end);
 
 #F  CCGraficaDePuntosYTriangulos( g ) 
