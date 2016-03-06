@@ -112,6 +112,7 @@ InstallGlobalFunction( CCCantidadDeGrupos, function( a,b )
         G:=AllGroups(i);
         PrintTo("/dev/tty","cantidad de grupos = ",Length(G),"   \n");
     od; 
+    return ;    
 end);
 
 #F  CCPosibleCuello( T ) 
@@ -193,16 +194,28 @@ InstallGlobalFunction( CCEsGraficaDeCayley, function( G )
     return false;
 end);
 
+#F  CCOrbitas( g ) 
+##
+InstallGlobalFunction( CCOrbitas, function( g )
+    local orb, aut, l, x;
+    aut := AutomorphismGroup(g);
+    orb := Orbits(aut,Elements(g),OnPoints);
+    l := List(orb,x->x[1]);
+    return l;    
+end);
+
 #F  CCListaTBuenas( g, a ) 
 ##
 InstallGlobalFunction( CCListaTBuenas, function( g, a )
-    local aut, l, l1, l2, i, orb, t;
+    local aut, l, l1, l2, i, orb, t, L;
     aut := AutomorphismGroup(g);
     l2 := [];
+    #    L := CCOrbitas(g);
+    L := Elements(g);
     if a=1 then
-        l := Filtered(Elements(g), x-> Order(x)=3);
+        l := Filtered(L, x-> Order(x)=3);
     else
-        l := Filtered(Elements(g), x-> not Order(x)=3);
+        l := Filtered(L, x-> not Order(x)=3);
     fi;
     l1 := ShallowCopy(CCEliminaInversos(l));
     l := Set(CCPosiblesT(l1,a));
@@ -282,3 +295,4 @@ InstallGlobalFunction( CCTsParaCuelloDado, function( g, c, a )
     od; 
     return LG;
 end);
+

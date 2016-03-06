@@ -115,6 +115,21 @@ DeclareGlobalFunction( "CCPosiblesT" );
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CCEsGraficaDeCayley" );
 
+#F  CCOrbitas( g ) 
+##
+##  <#GAPDoc Label="CCOrbitas">
+##  <ManSection>
+##  <Func Name="CCOrbitas" Arg="grupo"/>
+##
+##  <Description>
+##  Recibe un grupo, y calcula las orbitas del conjunto de elementos del
+##  grupo, usando el grupo de automorfismos del mismo grupo. Regresa una 
+##  lista con un representante de cada orbita. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CCOrbitas" );
+
 #F  CCListaTBuenas( g, a ) 
 ##
 ##  <#GAPDoc Label="CCListaTBuenas">

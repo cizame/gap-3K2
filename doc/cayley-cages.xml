@@ -13,6 +13,7 @@
     <#Include Label="CCPosibleCuello">    
     <#Include Label="CCPosiblesT">
     <#Include Label="CCEsGraficaDeCayley">
+    <#Include Label="CCOrbitas">
     <#Include Label="CCListaTBuenas">
     <#Include Label="CCExaminaGrupo">
     <#Include Label="CCGraficaDePuntosYTriangulos">

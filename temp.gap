@@ -168,3 +168,11 @@ Prueba:= function(r1,r2,c,a)
     return L;    
 end;
     
+
+Orbitas:= function(g)
+    local orb, aut, l, x;
+    aut := AutomorphismGroup(g);
+    orb := Orbits(aut,Elements(g),OnPoints);
+    l := List(orb,x->x[1]);
+    return l;    
+end;
