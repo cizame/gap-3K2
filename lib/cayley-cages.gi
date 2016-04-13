@@ -103,16 +103,20 @@ InstallGlobalFunction( CCConjuntoT2, function( a,b )
     fi;
 end);
 
-#F  CCCantidadDeGrupos( a,b ) 
+#F  CCCantidadDeGrupos( a, b ) 
 ##
-InstallGlobalFunction( CCCantidadDeGrupos, function( a,b )
-    local i,j,G;
+InstallGlobalFunction( CCCantidadDeGrupos, function( a, b )
+    local i,j,G,k;
+    G := [];
+    k := 0;
     for i in [a..b] do
-        PrintTo("/dev/tty","cardinalidad del grupo = ",i,"   \n");
-        G:=AllGroups(i);
-        PrintTo("/dev/tty","cantidad de grupos = ",Length(G),"   \n");
-    od; 
-    return ;    
+        Add(G, [i,NumberSmallGroups(i)]);
+    od;    
+    for i in [1..b-a+1] do
+        k:= G[i][2]+k;       
+    od;
+    Print("La cantidad de grupos es ", k,".\n");    
+    return G;    
 end);
 
 #F  CCPosibleCuello( T ) 
@@ -295,4 +299,3 @@ InstallGlobalFunction( CCTsParaCuelloDado, function( g, c, a )
     od; 
     return LG;
 end);
-
