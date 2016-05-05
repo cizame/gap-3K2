@@ -184,7 +184,7 @@ CuelloHG:= function( M )
     Ciclo := function( l, v )
         local i, j, Posicion;
         i := 1;
-        EXX := Length(XX)+1;        
+        EXX := ShallowCopy(Length(XX)+1);        
         C[EXX]:=[];
         if l=1 then
             for j in [1..n] do
@@ -199,11 +199,7 @@ CuelloHG:= function( M )
                             if j in XX then
                                 Posicion :=  Positions(XX,j);
                                 cuello := l - Posicion[1];
-                                if Posicion[1] = 1 then
-                                    ciclo := XX;
-                                else
-                                    ciclo := Filtered (XX, x -> (x in XX{[1..(Posicion[1]-1)]}) = false);
-                                fi;
+                                ciclo := XX{[Posicion[1]..l-1]};
                                 cot := ShallowCopy(cuello);
                                 i := m+1;
                                 j := n+1;
@@ -218,16 +214,24 @@ CuelloHG:= function( M )
                 i := i+1;
             od;
         fi;
+#        Info(Info3k2,2,"C[",EXX,"]= ",C[EXX]);
         for x in C[EXX] do
-            if l < cot - 1 and cuello > 2 then
+            if l < cot  and cuello > 2 then
                 XX := XX{[1..l-1]};
                 XX[l] := x[2];
+#               Info(Info3k2,1,"XX = ",XX);
                 Ciclo( l+1, x[1]);
             fi;        
         od;
     end;    
+    
     Ciclo(1, 0);
-    Print("El cuello es ", cuello ," y se forma con las aristas ",(ciclo)," \n");
+    
+    if cuello = infinity then
+        Print("La hipergŕafica es un hiperárbol y no tiene cuello \n");
+    else
+        Print("El cuello es ", cuello ," y se forma con las aristas ",(ciclo)," \n");
+    fi;        
     return;
 end;
 
@@ -282,7 +286,7 @@ ExaminaCuelloHG:= function( M, CUELLO )
             od;
         fi;
         for x in C[EXX] do
-            if l < cot - 1 and cuello > CUELLO -1 then
+            if l < cot  and cuello > CUELLO -1 then
                 XX := XX{[1..l-1]};
                 XX[l] := x[2];
                 Ciclo( l+1, x[1]);
@@ -291,7 +295,11 @@ ExaminaCuelloHG:= function( M, CUELLO )
     end;    
     Ciclo(1, 0);
     if cuello > CUELLO - 1 then
-        Print("El cuello es ", cuello ," y se forma con las aristas ",(ciclo)," \n");
+        if cuello = infinity then
+            Print("La hipergŕafica es un hiperárbol por lo cual no tiene cuello \n");
+        else
+            Print("El cuello es ", cuello ," y se forma con las aristas ",(ciclo)," \n");
+        fi;        
     else
         Print("La gráfica tiene un ciclo de longitud ", cuello ," y se forma con las aristas ",(ciclo)," \n");
     fi;
@@ -355,4 +363,134 @@ end;
 # Jaula cuello 6, M3:=[ [ 1, 1, 1, 0, 0, 0, 0 ], [ 1, 0, 0, 1, 1, 0, 0 ], [ 1, 0, 0, 0, 0, 1, 1 ], [ 0, 1, 0, 1, 0, 1, 0 ], [ 0, 1, 0, 0, 1, 0, 1 ], [ 0, 0, 1, 1, 0, 0, 1 ],  [ 0, 0, 1, 0, 1, 1, 0 ] ] ;
 
 
+VerificicaModulo:=function(m)
+    local n,i,L;
+    L:=[];
+    i:=1;
+    for n in [1..m] do
+        if RemInt(3*[2^(n-1)-1]*[2^n],n) <> 0 then
+            L[i]:=[n,RemInt(3*[2^(n-1)-1]*[2^n],n)];
+            i:=i+1;
+        fi;
+    od;
+    Print(i);
+    
+    return L;
+end;
 
+        
+
+ArbolMatriz:=function(cuello)
+    local L,x,y,i,k,n;
+    n := 2^(cuello)-1;    
+    L:=List([1..n], y -> List([1..n], x -> 0));
+    L[1][1]:=1;
+    k:=2;    
+    i:=1;
+    while k < n do
+        L[i][k] := 1;
+        L[i][k+1] := 1;
+        L[k][i] := 1;
+        L[k+1][i]:= 1;
+        k := k+2;
+        i := i+1;            
+    od;
+    return L;
+end;
+
+
+
+# M es una matriz mxm que por un lado tine vertices y por otro lado aristas
+# N es el cuello
+# tt es la permanencia de cada vertice en T=la lista que no permite que salga tan pronto
+HCGraficaImpar:=function(M,N,tt,max)
+    local k,i,j,x,VV,AV,AV1,VV1,CV,Vivos,n,m,T,t;
+    M:=StructuralCopy(M);
+    
+    VV := [];
+    AV := [];
+    AV1 := [];
+    VV1 := [];
+    CV := [];
+    m := Length(M[1]);
+    n := Length(M);
+    Vivos := function(M)
+        for i in [1..m] do
+            VV[i] := 3-Sum(M[i]);
+            if VV[i]>0 then
+                Add(VV1,i);
+            fi;
+            AV[i] := 0;
+            for j in [1..n] do
+                AV[i] := AV[i]+M[j][i];
+            od;
+            AV[i] := 3-AV[i];
+            if AV[i]>0 then
+                Add(AV1,i);
+            fi;
+        od;
+        return;
+    end;
+    Vivos(M);
+    
+#    Info(Info3k2,2,"Vértices vivos",VV1);
+#    Info(Info3k2,2,"Aristas vivas",AV1);
+#    Info(Info3k2,3,"No. conjuntos que faltan a los vértices vivos",VV);
+#    Info(Info3k2,3,"No. vértices que faltan a aristas vivas",AV);
+#    Print("\n Vértices vivos",VV1);
+#    Print("\n Aristas vivas",AV1);
+#    Print("\n No. conjuntos que faltan a los vértices vivos",VV);
+    #    Print("\n No. vértices que faltan a aristas vivas",AV);
+    
+    CV[1] := [];
+    CV[2] := [];
+    CV[3] := [];
+    CV[1] := VV1{[1..2^(N-2)]};
+    CV[2] := VV1{[2^(N-2)+1..2^(N-1)]};
+    CV[3] := VV1{[2^(N-1)+1..Length(VV1)]};
+    T:=List([1..tt],x->0);
+    
+    while AV1 <> [] do
+        k := RandomList(AV1);
+        j := 1;   
+        t := 0;
+        
+        while AV[k]>0 do
+            i := RandomList(CV[j]);
+            if not(i in T) then
+                AV[k] := AV[k]-1;
+                VV[i] := VV[i]-1;
+                if VV[i]=0 then
+                    CV[j] := Filtered(CV[j], x -> x<>i);
+                fi;
+                Append(T,[i]);
+                Remove(T,1);     
+                j := j+1;
+                M[i][k] := 1;
+            fi;            
+            t:=t+1;
+            if t > max then
+                Print("Se cicló \n");
+                
+                return M;
+            fi;                
+        od;
+        AV1 := Filtered(AV1, x -> x<>k);
+#        Print(" AV1",AV1,"\n");
+#        Print(" VV1",VV1,"\n");        
+#        Print(" AV",AV,"\n");
+#        Print(" VV",VV,"\n");
+    od;
+    return M;
+end;
+
+
+# Para prueba y error                          
+PruebaError:=function(M,N,tt,max,k)
+    local i;
+    for i in [1..k] do
+        CuelloHG(HCGraficaImpar(M,N,tt,max));
+    od;    
+end;
+
+    
