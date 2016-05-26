@@ -1,3 +1,4 @@
+
 LoadPackage("grape");
 
 EsGraficaDeCayley := function (g)
@@ -399,6 +400,32 @@ ArbolMatriz:=function(cuello)
 end;
 
 
+# en lugar de matriz oy las aristas de la grafica como lista de listas
+ArbolVector := function(n)
+    local  L, i, j, arbol, st, st1;
+    #    M:=List([1..n], y -> List([1..n], x -> 0));
+    st := 2^(n)-1;
+    L:=[[1,2,3]];
+    arbol := function(l)
+        local x;
+        x:=l*4;
+        if st>=x+3 then
+            Append(L,[[l,x,x+1],[l,x+2,x+3]]);                       
+            arbol(l+1);
+        else
+            return;
+        fi;
+    end;
+    arbol(1);
+    i := L[Length(L)][1]+1;
+    st1 := 2^(n-1)-1;    
+    for j in [i..st1] do
+        Append(L,[[j],[j]]);
+    od;            
+    return L;
+end;
+
+
 
 # M es una matriz mxm que por un lado tine vertices y por otro lado aristas
 # N es el cuello
@@ -493,4 +520,246 @@ PruebaError:=function(M,N,tt,max,k)
     od;    
 end;
 
+#
+# n es el cuello de la hipergráfica
+# La función pretende llenar la submatriz con unos para asignar
+# nuevos vertices a agunas aristas
+# Vector es una funcion que llena un vector que me indica como asignar
+# las aristas faltantes, forman siete ciclos con las aristas del arbol
+# pero aun no se si forma cicls mas pequeños con las nuevas aristas
+SubMatriz:=function(n)
+    local N, M, i, j, Vector, L, n1, n2; 
+    N := 2^(n-1);
+    n1 := N/4;
+    n2 := N/2;
+    M := List( [1..N], i -> List( [1..N], j -> 0 ) );   
+    Vector := function(l)
+        local x, L1, aux;
+        L1 := [];
+        aux:= 2^(n-4-l);
+        for x in L do
+            Add (L1, x+aux);
+        od;
+        Append (L, L1);
+        if aux > 1 then
+            Vector (l+1);
+        else
+            return;
+        fi;
+    end;
+    L := [1];
+    Vector(0);
+    Print(L);
+    for i in [1..Length(L)] do
+        M[i][2*i - 1] := 1;
+        M[i + n1][2*i] := 1;
+        M[i + n2][2*i - 1] := 1;
+        M[i + n2 + n1][2*i] := 1;
+        M[i][2*i - 1 + n2] := 1;
+        M[i + n1][2*i + n2] := 1;
+#        M[i + n2][2*i - 1 + n2] := 1;
+#        M[i + n2 + n1][2*i + n2] := 1;
+    od;    
+    return M;
+end;
+
+
+VectorSubGrafica:=function(n)
+    local N, Vector, L; 
+    N := 2^(n-1);
+#    n1 := N/4;
+#    n2 := N/2;
+    Vector := function(l)
+        local x, L1, aux;
+        L1 := [];
+        aux:= 2^(n-4-l);
+        for x in L do
+            Add (L1, x+aux);
+        od;
+        Append (L, L1);
+        if aux > 1 then
+            Vector (l+1);
+        else
+            return;
+        fi;
+    end;
+    L := [1];
+    Vector(0);
+    return L;
+end;
+
+#LA función crea una hipergráfica representada como lista de aristas
+# Cada sublista "i" de la lista contiene los vertices que pertenecen
+# a dicha arista.
+# La funcion no es aleatoria, primero crea las aristas correspondientes
+# al arbol necesario para formar una jaula (el de la cota de  Moore).
+# y despues llena ciertas aristas que no forman ciclos pequeños.
+# Recive como argumento al cuello.
+
+
+GraficaAristas := function(n)
+    local L1, L2, i, m1, m2, m3;
+    L1 := ArbolVector(n);    
+    L2 := VectorSubGrafica(n);
+    m1 := 2^(n-1);
+    m2 := 2^(n-2);
+    m3 := 2^(n-3);
+    for i in [1..Length(L2)] do
+        Add(L1[ m1 + 2*(L2[i]-1) ], m1 + i - 1);
+        Add(L1[ m1 + 2*(L2[i]-1) + 1 ], m1 + m3 + i - 1);
+        Add(L1[ m1 + 2*(L2[i]-1) + m2], m1 + i - 1+m2);
+        Add(L1[ m1 + 2*(L2[i]-1) + 1+ m2], m1 + m3 + i - 1+m2);
+    od;
+    return L1;
+end;
+
+
+#La funcion recuce una hipergráfica representada por su lista de aristas
+#y devuelve una hipergráfica representada por su lista de vertices 
+AristasAVertices:=function(LA)
+    local LV, i,j,k, aux,n;
+    k := Length(LA);
+    aux := Set(Concatenation(LA));
+    RemoveSet(aux,0);   
+    n := Length(aux);                       
+    LV := List ([1..n], i -> []);
+    for i in [1..k] do
+        for j in [1..Length(LA[i])] do
+            Add(LV[LA[i][j]],i);
+        od;
+    od;
+    return LV;
+end;
+
+                       
+                       
+#La funcion calcula el ciclo más pequeño en el que se encuentra la arista
+# recive como argumento una hipergráfica representada como la lista de aristas
+# i.e. cada sublista "i" de la lista contiene los vertices que pertenecen
+# a dicha arista.
+# recive la arista y graafica representada por sus aristas;
+
+CicloMenorConLaAristaFallido := function (arista , LA)
+    local LV, XX, C, ciclo, X, cot, Ciclo,i, Vo;
+    LV := AristasAVertices(LA);
+    cot := infinity;    
+    XX := [[PositionSet(LA,arista),0]];
+    if XX[1][1] = fail then
+        Print("La arista no pertenece a la gráfica \n");
+        return fail;
+    fi;
+    ciclo:=[];
+    C:=[];   
+    Vo:=[0];
     
+    C[1] := [XX[1]];
+    Ciclo:= function(l)
+        local x,y,p;
+        C[l]:=[];              
+        for x in LA[XX[l-1][1]] do
+            if (x in Vo)=false then
+                for y in LV[x] do
+                    if y <> XX[l-1][1] then
+                        p := PositionSet(XX,[y,x]);
+                        if  p = fail or p=1 then
+                            if y=XX[1][1] then
+                                cot := l-1;
+                                Add(XX,[y,x]);
+                                ciclo :=StructuralCopy(XX);
+                                C[l] := [];
+                            else
+                                Add(C[l],[y,x]);
+                            fi;
+                        fi;
+                    fi;
+                od;
+            fi;
+        od;
+        for x in C[l] do
+            if l < cot then
+                XX := XX{[1..l-1]};
+                Add(XX,x);
+                Vo := Vo{[1..l-1]};
+                Add(Vo,x[2]);                
+                Ciclo( l+1);
+            fi;        
+        od;
+    end;    
+    Ciclo(2);
+    if cot = infinity then
+        Print("La hiperarista no pertenece a algún ciclo \n");
+        return fail;
+    else
+        X:=[];
+        for i in [2..cot+1] do
+            Add(X,ciclo[i][2]);
+        od;
+        Add(X,ciclo[2][2]);
+        Print("La longitud del ciclo es ", cot ," y es ",X," \n");
+        return ciclo;
+    fi;        
+end;
+
+
+
+CicloMenorConLaArista := function (arista , LA)
+    local LV, XX, C, ciclo, X, cot, Ciclo,i, Vo;
+    LV := AristasAVertices(LA);
+    cot := infinity;    
+    XX := [[PositionSet(LA,arista),0]];
+    if XX[1][1] = fail then
+        Print("La arista no pertenece a la gráfica \n");
+        return fail;
+    fi;
+    ciclo:=[];
+    C:=[];   
+    Vo:=[0];
+    C[1] := [XX[1]];
+    Ciclo:= function(l)
+        local x,y,p;
+        C[l]:=[];              
+        for x in LA[XX[l-1][1]] do
+            if (x in Vo)=false then
+                for y in LV[x] do
+                    if y <> XX[l-1][1] then
+                        p := PositionSet(XX,[y,x]);
+                        if  p = fail or p=1 then
+                            if y=XX[1][1] then
+                                cot := l-1;
+                                Add(XX,[y,x]);
+                                ciclo :=StructuralCopy(XX);
+                                C[l] := [];
+                            else
+                                Add(C[l],[y,x]);
+                            fi;
+                        fi;
+                    fi;
+                od;
+            fi;
+        od;
+        for x in C[l] do
+            if l < cot then
+                XX := XX{[1..l-1]};
+                Add(XX,x);
+                Vo := Vo{[1..l-1]};
+                Add(Vo,x[2]);                
+                Ciclo( l+1);
+            fi;        
+        od;
+    end;    
+    Ciclo(2);
+    if cot = infinity then
+        Print("La hiperarista no pertenece a algún ciclo \n");
+        return fail;
+    else
+        X:=[];
+        for i in [2..cot+1] do
+            Add(X,ciclo[i][2]);
+        od;
+        Add(X,ciclo[2][2]);
+        Print("La longitud del ciclo es ", cot ," y es ",X," \n");
+        return ciclo;
+    fi;        
+end;
+
+
