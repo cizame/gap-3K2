@@ -493,4 +493,29 @@ PruebaError:=function(M,N,tt,max,k)
     od;    
 end;
 
-    
+ListaAleatoriaDeElementosDeGrupo := function(G, n)
+    local i, l;
+    l := [];
+    for i in [1..n] do
+        Add(l, Random(G));
+    od;
+    return l;
+end;
+
+CCNewEliminaInversos := function( l )
+    local pos, i, j;
+    i := 1;
+    while i <= Length(l) do
+        pos := Positions(l, l[i]);
+        if l[i] <> l[i]^(-1) then
+            pos := Set(Concatenation(pos, Positions(l, l[i]^-1)));
+        fi;
+        Remove(pos, 1);
+        j := 1;
+        while j <= Length(pos) do
+            Remove(l, pos[j]-j+1);
+            j := j+1;
+        od;
+        i := i+1;
+    od;
+end;
