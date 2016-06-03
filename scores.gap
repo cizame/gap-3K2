@@ -1,7 +1,8 @@
 LoadPackage("hypergraphs");
 
-NewBlocks := function(v,g)
-    local IsAdmissibleBlock, Ind, deg, DegreeSum, B, LiveVertices, IndexLiveVertices, Switch, stop;
+NewBlocks := function(v, g)
+    local IsAdmissibleBlock, Ind, deg, DegreeSum, B, LiveVertices, 
+          IndexLiveVertices, Switch, stop;
     deg := function(H, x)
         Ind := IndexOfEdges(H);
         return Length(Ind.(x));
@@ -30,7 +31,7 @@ NewBlocks := function(v,g)
     LiveVertices := [1..v];
     IndexLiveVertices := List([1..v], x->3);
     Switch := function( B )
-        local combs, select;
+        local combs, select, extra, j;
         combs := Combinations(LiveVertices, 3);
         combs := Filtered(combs, x-> IsAdmissibleBlock(B, x));
         if combs <> [] then
@@ -43,7 +44,14 @@ NewBlocks := function(v,g)
             #     select := combs;
             # fi;
             # Add(B, Random(select));
-            Add(B, combs[Length(combs)]);
+            extra := combs[Length(combs)];
+            Add(B, extra);
+            for j in extra do
+                IndexLiveVertices[j] := IndexLiveVertices[j] - 1;
+                if IndexLiveVertices[j] = 0 then
+                    LiveVertices := RemovedSet@hypergraphs(LiveVertices, j);
+                fi;
+            od;
         fi;
         return B;
     end;
