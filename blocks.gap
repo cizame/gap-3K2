@@ -1,40 +1,56 @@
 LoadPackage("kreher-stinson");
+LoadPackage("hypergraphs");
 
-BloquesDeTres := function (v)
-    local B, b, Switch, LiveVertices,NumLiveVertices, BlocksContainingVertex, i;
+BloquesDeTres := function (v, g)
+    local B, b, Switch, LiveVertices, LiveIndexVertices, NumLiveVertices, BlocksContainingVertex, i, H,
+          IsAdmissibleBlock;
+    IsAdmissibleBlock := function(B , P)
+        local H, pairs, p, isit;
+        H := HHypergraph(B);
+        pairs := Combinations(P, 2);
+        isit := true;
+        i := 0;
+        while isit and i < Length(pairs) do
+            i := i+1;
+            p := pairs[i];
+            isit := (HDistance(H, p[1], p[2]) >= g-1);
+        od;
+        return isit;
+    end;
     B := [];
     b := 0;
-    LiveVertices := List([1..v], x -> 3);
+    LiveIndexVertices := List([1..v], x->3);
+    LiveVertices := [1..v];
     NumLiveVertices := v;
     Switch := function (B)
-        local x, I, j, P;
-        if LiveVertices[i] > 0 then
-            P := [i];
-            while (i in P) do
-                I := KSRandomkSubset(2,NumLiveVertices);
-                Print("Indices: ",I,"\n");
-                P := Filtered([1..v], i->LiveVertices[i]<>0){I};
-                Print("P: ",P,"\n");
+        local x, I, j, P, all;
+        all := Difference(Combinations(LiveVertices, 3), B);
+        P := Random(all);
+        if IsAdmissibleBlock(B, P) then 
+            Add(B, P);
+            b := b+1;
+            Print("Adding ", B, "\n");
+            for j in P do
+                LiveIndexVertices[j] := LiveIndexVertices[j] - 1;
+                if LiveIndexVertices[j] = 0 then
+                    NumLiveVertices := NumLiveVertices - 1;
+                    LiveVertices := RemovedSet@hypergraphs(LiveVertices, j);
+                fi;
             od;
-            Add(P,i);
-            P := Set(P);
-            if not(P in B) then
-                b := b+1;
-                Add(B,P);
-                Print("Adding ",B,"\n");
-                for j in P do
-                    LiveVertices[j] := LiveVertices[j] - 1;
-                    if LiveVertices[j] = 0 then
-                        NumLiveVertices := NumLiveVertices - 1;
-                    fi;
-                od;
-            fi;
-        else
-            i := i+1;
         fi;
+        return;
     end;
-    i := 1;
+
     while b < v do
+        if NumLiveVertices in [1,2] then
+            Print("Unable to finish.\n");
+            return fail;
+        fi;
+        if (NumLiveVertices = 3) and not(IsAdmissibleBlock(B, LiveVertices)) 
+        then
+            Print("Unable to finish.\n");
+            return fail;
+        fi;
         Switch(B);
     od;
     return B;
