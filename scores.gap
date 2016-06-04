@@ -69,14 +69,15 @@ Otra:=function(HG,cuello)
 end;
         
 NewBlocks := function(v, g)
-    local B, LiveVertices, IndexLiveVertices, Switch, stop;
+    local B, LiveVertices, IndexLiveVertices, Switch, stop, removes;
     Switch := function()
-        local H, Ind, combs, select, extra, j, deg, DegreeSum, IsAdmissibleBlock;
+        local H, Ind, combs, select, extra, j, deg, DegreeSum, IsAdmissibleBlock,
+              RemoveRandom;
         deg := function(x)
             return Length(Ind.(x));
         end;
         DegreeSum := function (B)
-            return Sum(List(B, deg));
+            return Sum(List(B, deg)) + removes*(1/Sum(B));
         end;
         IsAdmissibleBlock := function(P)
             local pairs, p, i, isit;
@@ -95,31 +96,54 @@ NewBlocks := function(v, g)
             od;
             return isit;
         end;
+        RemoveRandom := function()
+            local rem;
+            rem := Random(B);
+            B := Difference(B, [rem]);
+            Print("Removing ", rem, "\n");
+            for j in rem do
+                if IndexLiveVertices[j] = 0 then
+                    Add(LiveVertices, j);
+                fi;
+                IndexLiveVertices[j] := IndexLiveVertices[j] + 1;
+            od;
+        end;
         H := HHypergraph([1..v], B);
         Ind := IndexOfEdges(H);
         combs := Combinations(LiveVertices, 3);
         combs := Filtered(combs, IsAdmissibleBlock);
         if combs <> [] then
+            if Length(combs) = 1 then
+                Print("Unique choice!\n");
+            fi;
+            Print(Length(combs), " choices.\n");
             SortBy(combs, DegreeSum);
             extra := combs[Length(combs)];
             Add(B, extra);
             for j in extra do
                 IndexLiveVertices[j] := IndexLiveVertices[j] - 1;
                 if IndexLiveVertices[j] = 0 then
-                    LiveVertices := RemovedSet@hypergraphs(LiveVertices, j);
+                    LiveVertices := Difference(LiveVertices, [j]);
                 fi;
             od;
+        else
+            removes := removes + 1;
+            RemoveRandom();
+            RemoveRandom();
         fi;
         return;
     end;
     B := [];
     stop := 0;
+    removes := 0;
     LiveVertices := [1..v];
     IndexLiveVertices := List([1..v], x->3);
-    while Length(B) < v and stop < v+2 do
+    while Length(B) < v and stop < v+2000 do
         stop := stop+1;
-        Print(B, " ", Length(B), "\n");
         Switch();
+        Print(B, " ", Length(B), "\n");
+        Print("LiveVertices: ", LiveVertices, "\n");
+        Print("IndexLiveVertices: ", IndexLiveVertices, "\n");
     od;
     return B;
 end;
