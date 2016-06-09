@@ -77,7 +77,8 @@ NewBlocks := function(v, g)
             return Length(Ind.(x));
         end;
         DegreeSum := function (B)
-            return Sum(List(B, deg)) + removes*(1/Sum(B));
+            return Sum(List(B, deg)) + removes*(1/Sum(B)) + removes*Sum(List(B, deg));
+            #return Sum(List(B, deg));
         end;
         IsAdmissibleBlock := function(P)
             local pairs, p, i, isit;
@@ -120,6 +121,7 @@ NewBlocks := function(v, g)
             SortBy(combs, DegreeSum);
             extra := combs[Length(combs)];
             Add(B, extra);
+            Print("Adding: ", extra, "\n");
             for j in extra do
                 IndexLiveVertices[j] := IndexLiveVertices[j] - 1;
                 if IndexLiveVertices[j] = 0 then
@@ -130,6 +132,12 @@ NewBlocks := function(v, g)
             removes := removes + 1;
             RemoveRandom();
             RemoveRandom();
+            RemoveRandom();
+            RemoveRandom();
+            RemoveRandom();
+            RemoveRandom();
+            RemoveRandom();
+            RemoveRandom();
         fi;
         return;
     end;
@@ -138,10 +146,10 @@ NewBlocks := function(v, g)
     removes := 0;
     LiveVertices := [1..v];
     IndexLiveVertices := List([1..v], x->3);
-    while Length(B) < v and stop < v+2000 do
+    while Length(B) < v and stop < v+20000 do
         stop := stop+1;
         Switch();
-        Print(B, " ", Length(B), "\n");
+        #Print(B, " ", Length(B), "\n");
         Print("LiveVertices: ", LiveVertices, "\n");
         Print("IndexLiveVertices: ", IndexLiveVertices, "\n");
     od;
