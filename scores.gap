@@ -72,7 +72,7 @@ NewBlocks := function(v, g)
     local B, LiveVertices, IndexLiveVertices, Switch, stop, removes;
     Switch := function()
         local H, Ind, combs, select, extra, j, deg, DegreeSum, IsAdmissibleBlock,
-              RemoveRandom;
+              RemoveRandom, RemoveUsingDistances;
         deg := function(x)
             return Length(Ind.(x));
         end;
@@ -109,6 +109,38 @@ NewBlocks := function(v, g)
                 IndexLiveVertices[j] := IndexLiveVertices[j] + 1;
             od;
         end;
+        RemoveUsingDistances := function()
+            local DistancesSum, DistancesSumRemoved, M, blocks, rem;
+            DistancesSum := function(P)
+                local pair, pairs, dsum;
+                dsum := 0;
+                pairs := Combinations(P, 2);
+                for pair in pairs do
+                    dsum := dsum + M.(pair[1]).(pair[2]);
+                od;
+                return dsum;
+            end;
+            DistancesSumRemoved := function(P)
+                local Hrem;
+                Hrem := HRemovedEdge(H, P);
+                M := AllDistances(Hrem);
+                return DistancesSum(P);
+            end;
+            blocks := ShallowCopy(B);
+            SortBy(blocks, DistancesSumRemoved);
+            Print("Distances = ", List(blocks, DistancesSumRemoved), "\n");
+            rem := blocks[Length(blocks)];
+            blocks := Filtered(blocks, x -> DistancesSumRemoved(x) = DistancesSumRemoved(rem) );
+            rem := Random(blocks);
+            B := Difference(B, [rem]);
+            Print("Removing ", rem, "\n");
+            for j in rem do
+                if IndexLiveVertices[j] = 0 then
+                    Add(LiveVertices, j);
+                fi;
+                IndexLiveVertices[j] := IndexLiveVertices[j] + 1;
+            od;
+        end;
         H := HHypergraph([1..v], B);
         Ind := IndexOfEdges(H);
         combs := Combinations(LiveVertices, 3);
@@ -133,11 +165,19 @@ NewBlocks := function(v, g)
             RemoveRandom();
             RemoveRandom();
             RemoveRandom();
-            RemoveRandom();
-            RemoveRandom();
-            RemoveRandom();
-            RemoveRandom();
-            RemoveRandom();
+            RemoveUsingDistances();
+            
+            # RemoveUsingDistances();
+            # RemoveUsingDistances();
+            # RemoveUsingDistances();
+            # RemoveUsingDistances();
+            
+            # RemoveRandom();
+            # RemoveRandom();
+            # RemoveRandom();
+            # RemoveRandom();
+            # RemoveUsingDistances();
+            # RemoveUsingDistances();
         fi;
         return;
     end;
@@ -146,9 +186,14 @@ NewBlocks := function(v, g)
     removes := 0;
     LiveVertices := [1..v];
     IndexLiveVertices := List([1..v], x->3);
-    while Length(B) < v and stop < v+20000 do
+    while Length(B) < v and stop < v+1000 do
         stop := stop+1;
+        Print("Attempt ",stop," of 1035. We have ", Length(B), " blocks.\n");
         Switch();
+        if Length(Union(B)) = Length(B) then
+            return B;
+            Print("Done!\n");
+        fi;
         #Print(B, " ", Length(B), "\n");
         Print("LiveVertices: ", LiveVertices, "\n");
         Print("IndexLiveVertices: ", IndexLiveVertices, "\n");
